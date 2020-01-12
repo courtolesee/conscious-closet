@@ -13,6 +13,7 @@ import AccountSettings from '../AccountSettings/AccountSettings';
 import AddNew from '../AddNew/AddNew';
 import Delete from '../Delete/Delete';
 import Edit from '../Edit/Edit';
+import ItemCard from '../ItemCard/ItemCard';
 
 class App extends Component {
   render() {
@@ -27,6 +28,7 @@ class App extends Component {
           <Route path="/try" component={ TryIt } />
           <Route path="/signup" component={ SignUp } />
           <Route path="/closet" component={ Closet } />
+          <Route path="/item" component={ItemCard} />
           <Route path="/graph" component={ Graph } />
           <Route path="/account" component={ AccountSettings } />
           <Route path="/add" component={ AddNew } />

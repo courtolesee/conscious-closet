@@ -19,7 +19,7 @@ class About extends Component {
         return (
         <div>
             <h2>About</h2>
-            <button onClick={this.goToLogin}>Back</button>
+            <button onClick={this.goToLogin}>Login</button>
             <button onClick={this.goToTryIt}>Try It!</button>
             <button onClick={this.goToSignUp}>Sign Up!</button>
         </div> 
