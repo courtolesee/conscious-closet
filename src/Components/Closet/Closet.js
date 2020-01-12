@@ -5,7 +5,6 @@ import ItemCard from '../ItemCard/ItemCard';
 class Closet extends Component {
 
     goToToolTips = () => {
-        this.props.history.push(`/about`);
     }
 
     goToGraph = () => {
@@ -13,7 +12,11 @@ class Closet extends Component {
     }
 
     goToAccountSettings = () => {
-        this.props.history.push(`/accout`)
+        this.props.history.push(`/account`)
+    }
+
+    goToAddNew = () => {
+        this.props.history.push(`/add`)
     }
 
     render(){
@@ -27,7 +30,7 @@ class Closet extends Component {
                 <button onClick={this.goToAccountSettings}>Account Settings</button>
             </section>
             <section>
-                Closet
+                Closet <button onClick={this.goToAddNew}>Add New</button>
                 <ItemCard />
             </section>
         </div> 
