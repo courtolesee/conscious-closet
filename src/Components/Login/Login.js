@@ -3,8 +3,12 @@ import { connect } from 'react-redux';
 
 class Login extends Component {
 
-    goToLogin = ()=>{
-        this.props.history.push(`/`);
+    goToCloset = ()=>{
+        this.props.history.push(`/closet`);
+    }
+
+    goToAbout = ()=>{
+        this.props.history.push(`/about`);
     }
 
     goToTryIt = ()=>{
@@ -17,12 +21,21 @@ class Login extends Component {
 
     render(){
         return (
-        <div>
-        <h2>About</h2>
-        <button onClick={this.goToLogin}>Back</button>
-        <button onClick={this.goToLogin}>Try It!</button>
-        <button onClick={this.goToSignUp}>Sign Up!</button>
-        </div> 
+        <seciton>
+            <div>
+                <h1>Conscious Closet</h1>
+                <input placeholder="username"/><br/>
+                <input placeholder="password"/><button onClick={this.goToCloset}>Sign In</button>
+            </div> 
+            <div>
+                What's Conscious Closet? <br/> Learn More. <br/>
+                <button onClick={this.goToTryIt}>Try It!</button><button onClick={this.goToAbout}>About</button>
+            </div>
+            <div>
+                New User? Sign Up.
+                <br/><button onClick={this.goToSignUp}>Sign Up</button>
+            </div>
+        </seciton>
         )
     }
 }
