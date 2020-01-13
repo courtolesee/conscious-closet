@@ -21,7 +21,7 @@ class Login extends Component {
 
     render(){
         return (
-        <seciton>
+        <>
             <div>
                 <h1>Conscious Closet</h1>
                 <input placeholder="username"/><br/>
@@ -35,7 +35,7 @@ class Login extends Component {
                 New User? Sign Up.
                 <br/><button onClick={this.goToSignUp}>Sign Up</button>
             </div>
-        </seciton>
+        </>
         )
     }
 }
