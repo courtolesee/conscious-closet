@@ -23,6 +23,18 @@ const styles = theme => ({
       position: 'absolute',
       bottom: theme.spacing(2),
       right: theme.spacing(3),
+    },  
+    linearColorPrimaryWater: {
+        backgroundColor: 'white',
+    },
+    linearBarColorPrimaryWater: {
+        backgroundColor: '#3F68A8',
+    },
+    linearColorPrimaryWaste: {
+        backgroundColor: 'white',
+    },
+    linearBarColorPrimaryWaste: {
+        backgroundColor: '#BD692D',
     },
   });
 
@@ -45,6 +57,7 @@ class Closet extends Component {
     state = {
         open: false,
         completed: 0,
+        goal: 100,
       };
     
     // functions
@@ -73,46 +86,67 @@ class Closet extends Component {
     };
 
     render(){
-        // const { classes } = props;
+        const { classes } = this.props;
         return (
-        <div>
-            <ClickAwayListener onClickAway={this.handleTooltipClose}>
-              <div>
-                <Tooltip
-                  PopperProps={{
-                    disablePortal: true,
-                  }}
-                  onClose={this.handleTooltipClose}
-                  open={this.state.open}
-                  disableFocusListener
-                  disableHoverListener
-                  disableTouchListener
-                  title="Click to see your actual numbers! This will show how many gallons of water currently used by your closet / your goal"
-                >
-                  <Button className="learnHowBtn" variant="contained" color="primary" onClick={this.handleTooltipOpen}>learn how</Button>
-                </Tooltip>
-              </div>
-            </ClickAwayListener>
-            <section className="closetSticky">
-                Total Potential Water Usage <br/>
-                <LinearProgress variant="determinate" value={this.state.completed} />
-                <br />
-                Total Potential Waste Contribution <br />
-                <LinearProgress color="secondary" variant="determinate" value={this.state.completed} />
-                <button onClick={this.goToGraph}>Graph</button>
-                <button onClick={this.goToAccountSettings}>Account Settings</button>
-            </section>
-            <section>
-                Closet 
-                {/* <Fab color="primary" aria-label="Add" className={classes.fab}>
-                    <AddIcon />
-                </Fab>
-                <ItemCard /> */}
-            </section>
             <div>
+                <section>Total Potential Water Usage 
+                    <ClickAwayListener onClickAway={this.handleTooltipClose}>
+                    <div>
+                        <Tooltip
+                        PopperProps={{
+                            disablePortal: true,
+                        }}
+                        onClose={this.handleTooltipClose}
+                        open={this.state.open}
+                        disableFocusListener
+                        disableHoverListener
+                        disableTouchListener
+                        title={`${this.state.completed}/${this.state.goal}`}
+                        placement="left-end"
+                        >
+                        <LinearProgress classes={{colorPrimary: classes.linearColorPrimary, barColorPrimary: classes.linearBarColorPrimary}} onClick={this.handleTooltipOpen} color="primary" variant="determinate" value={this.state.completed} style={{height:"20px"}}/>
+                        </Tooltip>
+                    </div>
+                    </ClickAwayListener>
+                </section>
+                <section>Total Potential Waste Contribution
+                    <ClickAwayListener onClickAway={this.handleTooltipClose}>
+                    <div>
+                        <Tooltip
+                        PopperProps={{
+                            disablePortal: true,
+                        }}
+                        onClose={this.handleTooltipClose}
+                        open={this.state.open}
+                        disableFocusListener
+                        disableHoverListener
+                        disableTouchListener
+                        title={`${this.state.completed}/${this.state.goal}`}
+                        placement="left-end"
+                        >
+                        <LinearProgress classes={{colorPrimary: classes.linearColorPrimaryWaste, barColorPrimary: classes.linearBarColorPrimaryWaste}} onClick={this.handleTooltipOpen} color="primary" variant="determinate" value={this.state.completed} style={{height:"20px"}} />
+                        </Tooltip>
+                    </div>
+                    </ClickAwayListener>
+                </section>
 
-        </div>
-        </div> 
+
+                <section className="closetSticky">
+                    <button onClick={this.goToGraph}>Graph</button>
+                    <button onClick={this.goToAccountSettings}>Account Settings</button>
+                </section>
+                <section className="closet">
+                    Closet 
+                    <Fab color="primary" aria-label="Add" onClick={this.goToAddNew} style={{backgroundColor:"green", marginLeft:"300px"}} size="small">
+                        <AddIcon />
+                    </Fab>
+                    <ItemCard />
+                </section>
+                    <div>
+
+                </div>
+               
+            </div>
         )
     }
 }
