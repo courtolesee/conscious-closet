@@ -23,7 +23,7 @@ class Login extends Component {
         return (
         <>
             <div>
-                <h1>Conscious Closet</h1>
+                <h1>Login</h1>
                 <input placeholder="username"/><br/>
                 <input placeholder="password"/><button onClick={this.goToCloset}>Sign In</button>
             </div> 
