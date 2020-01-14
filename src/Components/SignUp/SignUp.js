@@ -6,6 +6,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import PropTypes from 'prop-types';
 import Zoom from '@material-ui/core/Zoom';
+import Button from '@material-ui/core/Button';
+import classNames from 'classnames';
 
 const styles = theme => ({
     lightTooltip: {
@@ -31,6 +33,10 @@ const styles = theme => ({
     linearBarColorPrimary: {
         backgroundColor: '#F25D27',
     },
+    cssRoot: {
+        color: 'white',
+        backgroundColor: '#F28705',
+    },
   });
 
 
@@ -38,8 +44,14 @@ class SignUp extends Component {
 
     state = {
         open: false,
+        username: '',
+        password: '',
+        newItems: '',
+        waterGoal: 0,
+        wasteGoal: 0,
     }
 
+    // routes
     goToClosetSave = () => {
         // will send new user info to db
         this.props.history.push(`/closet`);
@@ -53,6 +65,7 @@ class SignUp extends Component {
         this.props.history.push(`/`);
     }
 
+    // tool tip funcitons
     handleTooltipClose = () => {
         this.setState({ open: false });
     };
@@ -68,27 +81,58 @@ class SignUp extends Component {
         clearInterval(this.timer);
     }
 
-    progress = () => {
-        const { completed } = this.state;
-        if (completed === 100) {
-            this.setState({ completed: 0 });
+    // progress = () => {
+    //     const { completed } = this.state;
+    //     if (completed === 100) {
+    //         this.setState({ completed: 0 });
+    //     } else {
+    //         this.setState({ completed: 30 });
+    //     }
+    // };
+
+    // data functions
+    registerUser = (event) => {
+        event.preventDefault();
+        if (this.state.username && this.state.password 
+            && this.state.newItems && this.state.waterGoal && this.state.wasteGoal){
+            this.props.dispatch({
+                type: 'REGISTER',
+                payload: {
+                    username: this.state.username,
+                    password: this.state.password, 
+                    newItems: this.state.newItems,
+                    waterGoal: this.state.waterGoal,
+                    wasteGoal: this.state.wasteGoal,
+                },
+            });
         } else {
-            this.setState({ completed: 30 });
+            alert('please input all data!')
         }
-    };
+    }
+
+    handleInputChangeFor = propertyName => (event) => {
+        console.log('changing', event.target.value);
+        
+        this.setState({
+            [propertyName]: event.target.value,
+        });
+    }
 
 
     render(){
         const { classes } = this.props;
         return (
-        <div>
-            <section> Sign Up
+        <form onSubmit={this.registerUser}><h1>Sign Up</h1>
+
                 <div>
-                    <input placeholder="username"/><br/>
-                    <input placeholder="password"/><br/>
+                    <input type="text" value={this.state.username} onChange={this.handleInputChangeFor('username')} placeholder="username"/><br/>
+                    <input type="text" value={this.state.password} onChange={this.handleInputChangeFor('password')} placeholder="password"/><br/>
+                </div>
+
+                <div>
+                    New Items Per Year:<input type="number" value={this.state.newItems} onChange={this.handleInputChangeFor('newItems')} placeholder="example: 6, 12, 24"/><br/>
                 </div>
                 <div>
-                    New Items Per Year:<input placeholder="example: 6, 12, 24"/><br/>
                     <ClickAwayListener onClickAway={this.handleTooltipClose}>
                     <div>
                         <Tooltip
@@ -105,21 +149,24 @@ class SignUp extends Component {
                             title='Middle (130,000 gallons) is average'
                             placement="left-end"
                             arrow>
-                            <p onClick={this.handleTooltipOpen}>Goal: Gallons of Water Usage Per Year</p>
+                            <p onClick={this.handleTooltipOpen}>Gallons of Water Usage Per Year</p>
                         </Tooltip>
                     </div>
-                    </ClickAwayListener>
+                </ClickAwayListener>
+
                     <WaterGoalSlider />
-                    Pounds of Waste Contribution Goal <br/>
+                    Pounds of Waste Contribution Goal
                     <WasteGoalSlider />
                 </div>
-            </section>
-            <section>
+            <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.submitNewUser}>
+                    Submit
+            </Button>
+            <div>
                 <button onClick={this.goToClosetSave}>Get Started</button>
                 <button onClick={this.goToAbout}>About</button>
                 <button onClick={this.goToLogin}>Back</button>
-            </section>
-        </div> 
+            </div>
+        </form>
         )
     }
 }
