@@ -19,10 +19,10 @@ const styles = theme => ({
       right: theme.spacing(3),
     },  
     linearColorPrimary: {
-        backgroundColor: 'white',
+        backgroundColor: '#d9c6bf',
     },
     linearBarColorPrimary: {
-        backgroundColor: '#BD692D',
+        backgroundColor: '#F25D27',
     },
   });
 
@@ -76,7 +76,7 @@ class WasteProgressBar extends Component {
                         disableTouchListener
                         title={`${this.state.completed}/${this.state.goal}`}
                         placement="left-end"
-                        >
+                        arrow>
                         <LinearProgress classes={{colorPrimary: classes.linearColorPrimary, barColorPrimary: classes.linearBarColorPrimary}} onClick={this.handleTooltipOpen} color="primary" variant="determinate" value={this.state.completed} style={{height:"20px"}}/>
                         </Tooltip>
                     </div>

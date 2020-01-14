@@ -17,7 +17,7 @@ class AddNew extends Component {
         return (
         <div>
             <h1>Add New</h1>
-            <button onClick={this.goToClosetSave}>save</button>
+            <button onClick={this.goToClosetSave}>Save</button>
             <button onClick={this.goToCloset}>Cancel</button>
         </div> 
         )

@@ -1,11 +1,11 @@
 .App {
   text-align: center;
-  background-color: #1e2024;
+  background-color: #1e2626;
   color: white;
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #2b3636;
   min-height: 50px;
   display: flex;
   flex-direction: column;

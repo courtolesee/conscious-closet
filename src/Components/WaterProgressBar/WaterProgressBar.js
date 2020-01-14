@@ -19,10 +19,10 @@ const styles = theme => ({
       right: theme.spacing(3),
     },  
     linearColorPrimary: {
-        backgroundColor: 'white',
+        backgroundColor: '#acbebf',
     },
     linearBarColorPrimary: {
-        backgroundColor: '#3F68A8',
+        backgroundColor: '#025159',
     },
   });
 
@@ -54,7 +54,7 @@ class WaterProgressBar extends Component {
         if (completed === 100) {
             this.setState({ completed: 0 });
         } else {
-            this.setState({ completed: 50 });
+            this.setState({ completed: 55 });
         }
     };
 
@@ -76,7 +76,7 @@ class WaterProgressBar extends Component {
                         disableTouchListener
                         title={`${this.state.completed}/${this.state.goal}`}
                         placement="left-end"
-                        >
+                        arrow>
                         <LinearProgress classes={{colorPrimary: classes.linearColorPrimary, barColorPrimary: classes.linearBarColorPrimary}} onClick={this.handleTooltipOpen} color="primary" variant="determinate" value={this.state.completed} style={{height:"20px"}}/>
                         </Tooltip>
                     </div>
