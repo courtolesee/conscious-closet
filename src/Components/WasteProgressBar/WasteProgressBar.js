@@ -5,8 +5,15 @@ import { withStyles } from '@material-ui/core/styles';
 import Tooltip from '@material-ui/core/Tooltip';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import Zoom from '@material-ui/core/Zoom';
 
 const styles = theme => ({
+    lightTooltip: {
+        backgroundColor: theme.palette.common.white,
+        color: 'rgba(0, 0, 0, 0.87)',
+        boxShadow: theme.shadows[1],
+        fontSize: 11,
+      },
     root: {
         flexGrow: 1,
       },
@@ -66,6 +73,8 @@ class WasteProgressBar extends Component {
                     <ClickAwayListener onClickAway={this.handleTooltipClose}>
                     <div>
                         <Tooltip
+                        classes={{ tooltip: classes.lightTooltip }}
+                        TransitionComponent={Zoom}
                         PopperProps={{
                             disablePortal: true,
                         }}
