@@ -4,6 +4,7 @@ import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import Tooltip from '@material-ui/core/Tooltip';
 
+
 const useStyles = makeStyles(theme => ({
     root: {
       width: 300 + theme.spacing(3) * 2,

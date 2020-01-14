@@ -35,8 +35,8 @@ const styles = theme => ({
 
 class WasteProgressBar extends Component {
 
-    state = {
-        open: false,
+  state = {
+        open: false,  
         completed: 0,
         goal: 100,
       };
