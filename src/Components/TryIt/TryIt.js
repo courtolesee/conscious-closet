@@ -41,7 +41,12 @@ const styles = theme => ({
 class TryIt extends Component {
     state = {
         open: false,
+        waterGoal: 30000,
+        wasteGoal: 100,
+        actualWater: 0,
+        actualWaste: 0,
     }
+
     // ROUTES
     goToAbout = ()=>{
         this.props.history.push(`/about`);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import WaterGoalSlider from '../WaterGoalSlider/WaterGoalSlider';
 
 class SignUp extends Component {
 
@@ -20,15 +21,16 @@ class SignUp extends Component {
     render(){
         return (
         <div>
-            <section>
+            <section> Sign Up
                 <div>
                     <input placeholder="username"/><br/>
                     <input placeholder="password"/><br/>
                 </div>
                 <div>
                     New Items Per Year:<input placeholder="example: 6, 12, 24"/><br/>
-                    Water Usage Goal <button>learn more</button><br/>
-                    Waste Contribution Goal <button>learn more</button><br/>
+                    Water Usage Goal <br/>
+                    <WaterGoalSlider />
+                    Waste Contribution Goal <br/>
                 </div>
             </section>
             <section>
