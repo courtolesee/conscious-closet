@@ -17,7 +17,7 @@ const styles = theme => ({
       margin: theme.spacing(2),
     },
     button: {
-        margin: theme.spacing.unit,
+        margin: theme.spacing(),
       },
       input: {
         display: 'none',
