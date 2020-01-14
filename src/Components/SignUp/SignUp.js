@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import WaterGoalSlider from '../WaterGoalSlider/WaterGoalSlider';
+import WasteGoalSlider from '../WasteGoalSlider/WasteGoalSlider';
 
 class SignUp extends Component {
 
@@ -31,6 +32,7 @@ class SignUp extends Component {
                     Water Usage Goal <br/>
                     <WaterGoalSlider />
                     Waste Contribution Goal <br/>
+                    <WasteGoalSlider />
                 </div>
             </section>
             <section>

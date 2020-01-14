@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
 
   const IOSSlider = withStyles({
     root: {
-      color: '#025159',
+      color: '#F25D27',
       height: 2,
       padding: '15px 15px',
       margin: '10px',
@@ -90,7 +90,7 @@ export default function WaterGoalSlider() {
   
     return (
         <div className={classes.root}>
-            <IOSSlider aria-label="ios slider" defaultValue={135000} min={0} max={270000} valueLabelDisplay="on" />
+            <IOSSlider aria-label="ios slider" defaultValue={80} min={0} max={160} valueLabelDisplay="on" />
         </div>
     );
 }
