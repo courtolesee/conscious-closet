@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
-// connect get redux's: props, dispatch
+    // connect get redux's: props, dispatch
 import ItemCard from '../ItemCard/ItemCard';
 import WaterProgressBar from '../WaterProgressBar/WaterProgressBar';
 import WasteProgressBar from '../WasteProgressBar/WasteProgressBar';

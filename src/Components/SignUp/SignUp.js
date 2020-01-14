@@ -162,9 +162,15 @@ class SignUp extends Component {
                     Submit
             </Button>
             <div>
-                <button onClick={this.goToClosetSave}>Get Started</button>
-                <button onClick={this.goToAbout}>About</button>
-                <button onClick={this.goToLogin}>Back</button>
+                <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToClosetSave}>
+                    Get Started
+                </Button>
+                <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToAbout}>
+                    About
+                </Button>
+                <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToLogin}>
+                Back
+                </Button>
             </div>
         </form>
         )
