@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import WaterProgressBar from '../WaterProgressBar/WaterProgressBar';
 import WasteProgressBar from '../WasteProgressBar/WasteProgressBar';
 import ItemCard from '../ItemCard/ItemCard';
+import GraphBtn from './ToolTips/GraphBtn';
+import AccountSettingsBtn from './ToolTips/AccountSettings';
 
 // material UI
 import { withStyles } from '@material-ui/core/styles';
@@ -12,6 +13,12 @@ import Button from '@material-ui/core/Button';
 import classNames from 'classnames';
 
 const styles = theme => ({
+    lightTooltip: {
+        backgroundColor: theme.palette.common.white,
+        color: 'rgba(0, 0, 0, 0.87)',
+        boxShadow: theme.shadows[1],
+        fontSize: 11,
+      },
     fab: {
       margin: theme.spacing(2),
     },
@@ -23,7 +30,7 @@ const styles = theme => ({
     },
     headerbtns: {
         color: 'white',
-        backgroundColor: '#d6a05e',
+        backgroundColor: '#f7af57',
     },
     cssRoot: {
         color: 'white',
@@ -32,7 +39,9 @@ const styles = theme => ({
   });
 
 class TryIt extends Component {
-
+    state = {
+        open: false,
+    }
     // ROUTES
     goToAbout = ()=>{
         this.props.history.push(`/about`);
@@ -46,16 +55,25 @@ class TryIt extends Component {
         this.props.history.push(`/signup`);
     }
 
-    goToGraph = () => {
-        this.props.history.push(`/graph`);
-    }
-
-    goToAccountSettings = () => {
-        this.props.history.push(`/account`)
-    }
-
     goToAddNew = () => {
         this.props.history.push(`/add`)
+    }
+
+    // FUNCTIONS 
+    handleTooltipClose = () => {
+        this.setState({ open: false });
+    };
+
+    handleTooltipOpenGraph = () => {
+        this.setState({ open: true });
+    };
+
+    componentDidMount() {
+        this.timer = setInterval(this.progress, 500);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timer);
     }
 
     // RENDER
@@ -73,16 +91,15 @@ class TryIt extends Component {
                     onClick={this.goToSignUp}>Sign Up</Button><br/>
                     Try It!
                     </h1>
+                    <p>Here you can get to know Conscious Closet's functionality without consequence!<br/>
+                        Click around to get to know how everything works. <br />
+                        Try adding (+) and deleting items to see what happens. </p>
                 </section>
                 <WaterProgressBar />
                 <WasteProgressBar />
                 <section className="closetSticky">
-                    <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToGraph}>
-                        Graph
-                    </Button>
-                    <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToAccountSettings}>
-                    Account Settings
-                    </Button>
+                    <GraphBtn />
+                    <AccountSettingsBtn />
                 </section>
                 <section className="closet">
                     Closet 
