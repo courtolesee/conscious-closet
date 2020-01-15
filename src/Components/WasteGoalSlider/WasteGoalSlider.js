@@ -1,79 +1,79 @@
 import React from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import Slider from '@material-ui/core/Slider';
+import Input from '@material-ui/core/Input';
 
-
-const useStyles = makeStyles(theme => ({
-    root: {
-      width: 300 + theme.spacing(3) * 2,
-    },
-    margin: {
-      height: theme.spacing(3),
-    },
-  }));
+const useStyles = makeStyles({
+  root: {
+    width: 380,
+    marginLeft: 20,
+    marginRight: 40,
+  },
+  markLabel: {
+    marginRight: 100,
+  },
+  input: {
+    width: 20,
+    marginRight: 30,
+    color: 'white',
+  },
+});
   
-  const iOSBoxShadow =
-  '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)';
+export default function WasteGoalSlider() {
+  const classes = useStyles();
+  const [value, setValue] = React.useState(120);
 
+  const handleSliderChange = (event, newValue) => {
+    setValue(newValue);
+    console.log('waste:', newValue);
+    
+  };
 
-  const IOSSlider = withStyles({
-    root: {
-      color: '#F25D27',
-      height: 2,
-      padding: '15px 15px',
-      margin: '10px',
-      marginTop: '25px',
-    },
-    thumb: {
-      height: 28,
-      width: 28,
-      backgroundColor: '#fff',
-      boxShadow: iOSBoxShadow,
-      marginTop: -14,
-      marginLeft: -14,
-      '&:focus,&:hover,&$active': {
-        boxShadow: '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          boxShadow: iOSBoxShadow,
-        },
-      },
-    },
-    active: {},
-    valueLabel: {
-      left: 'calc(-50% + 11px)',
-      top: -22,
-      '& *': {
-        background: 'transparent',
-        color: 'white',
-      },
-    },
-    track: {
-      height: 2,
-    },
-    rail: {
-      height: 2,
-      opacity: 0.5,
-      backgroundColor: '#bfbfbf',
-    },
-    mark: {
-      backgroundColor: '#025159',
-      height: 8,
-      width: 1,
-      marginTop: -3,
-    },
-    markActive: {
-      opacity: 1,
-      backgroundColor: 'currentColor',
-    },
-  })(Slider);
+  const handleInputChange = event => {
+    setValue(event.target.value === '' ? '' : Number(event.target.value));
+  };
 
-export default function WaterGoalSlider() {
-    const classes = useStyles();
-  
-    return (
-        <div className={classes.root}>
-            <IOSSlider aria-label="ios slider" defaultValue={80} min={0} max={160} valueLabelDisplay="on" />
-        </div>
-    );
+  const handleBlur = () => {
+    if (value < 0) {
+      setValue(0);
+    } else if (value > 160) {
+      setValue(160);
+    }
+  };
+
+  return (
+    <div className={classes.root}>
+      <Grid container spacing={1} alignItems="center">
+        <Grid item>
+        </Grid>
+        <Grid item xs>
+          <Slider
+            value={typeof value === 'number' ? value : 0}
+            onChange={handleSliderChange}
+            aria-labelledby="input-slider"
+            min={0}
+            max={160}
+            color="primary"
+          />
+        </Grid>
+        <Grid item>
+          <Input
+            className={classes.input}
+            value={value}
+            margin="dense"
+            onChange={handleInputChange}
+            onBlur={handleBlur}
+            inputProps={{
+              step: 10,
+              min: 0,
+              max: 200,
+              type: 'number',
+              'aria-labelledby': 'input-slider',
+            }}
+          />
+        </Grid>
+      </Grid>
+    </div>
+  );
 }
