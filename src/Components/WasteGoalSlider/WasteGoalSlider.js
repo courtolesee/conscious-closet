@@ -14,10 +14,11 @@ const useStyles = makeStyles({
     marginRight: 100,
   },
   input: {
-    width: 20,
+    width: 30,
     marginRight: 30,
     color: 'white',
   },
+
 });
   
 export default function WasteGoalSlider() {
