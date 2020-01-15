@@ -81,15 +81,6 @@ class SignUp extends Component {
         clearInterval(this.timer);
     }
 
-    // progress = () => {
-    //     const { completed } = this.state;
-    //     if (completed === 100) {
-    //         this.setState({ completed: 0 });
-    //     } else {
-    //         this.setState({ completed: 30 });
-    //     }
-    // };
-
     // data functions
     registerUser = (event) => {
         event.preventDefault();
@@ -169,7 +160,7 @@ class SignUp extends Component {
                     About
                 </Button>
                 <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToLogin}>
-                Back
+                    Back
                 </Button>
             </div>
         </form>
