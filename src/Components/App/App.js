@@ -1,6 +1,8 @@
 import { HashRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+
 
 // component imports
 import Login from '../Login/Login';
@@ -16,6 +18,11 @@ import Edit from '../Edit/Edit';
 import ItemCard from '../ItemCard/ItemCard';
 
 class App extends Component {
+
+  componentDidMount () {
+    this.props.dispatch({type: 'FETCH_USER'})
+  }
+
   render() {
     return (
     <div className="App">
@@ -40,4 +47,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect()(App);
