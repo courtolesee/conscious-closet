@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Slider from '@material-ui/core/Slider';
 import Input from '@material-ui/core/Input';
-
-  // color: '#025159',
 
   const useStyles = makeStyles({
     root: {
@@ -20,22 +18,11 @@ import Input from '@material-ui/core/Input';
       marginRight: 30,
       color: 'white',
     },
-  
   });
     
-  export default function WasteGoalSlider() {
+  export default function WaterGoalSlider(props) {
     const classes = useStyles();
-    const [value, setValue] = React.useState(135000);
-  
-    const handleSliderChange = (event, newValue) => {
-      setValue(newValue);
-      console.log('waste:', newValue);
-      
-    };
-  
-    const handleInputChange = event => {
-      setValue(event.target.value === '' ? '' : Number(event.target.value));
-    };
+    const [value, setValue] = useState(135000);
   
     const handleBlur = () => {
       if (value < 0) {
@@ -44,7 +31,7 @@ import Input from '@material-ui/core/Input';
         setValue(160);
       }
     };
-  
+
     return (
       <div className={classes.root}>
         <Grid container spacing={1} alignItems="center">
@@ -52,8 +39,8 @@ import Input from '@material-ui/core/Input';
           </Grid>
           <Grid item xs>
             <Slider
-              value={typeof value === 'number' ? value : 0}
-              onChange={handleSliderChange}
+              value={typeof props.value === 'number' ? props.value : 0}
+              onChange={props.handleWaterSliderChange}
               aria-labelledby="input-slider"
               min={0}
               max={270000}
@@ -63,9 +50,9 @@ import Input from '@material-ui/core/Input';
           <Grid item>
             <Input
               className={classes.input}
-              value={value}
+              value={props.value}
               margin="dense"
-              onChange={handleInputChange}
+              onChange={props.handleWaterInputChange}
               onBlur={handleBlur}
               inputProps={{
                 step: 10,

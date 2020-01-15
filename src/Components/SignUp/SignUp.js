@@ -47,8 +47,8 @@ class SignUp extends Component {
         username: '',
         password: '',
         newItems: '',
-        waterGoal: 0,
-        wasteGoal: 0,
+        waterGoal: 135000,
+        wasteGoal: 80,
     }
 
     // routes
@@ -109,6 +109,24 @@ class SignUp extends Component {
         });
     }
 
+    handleWaterSliderChange = (event, newWaterValue) => {
+        this.setState({waterGoal: newWaterValue});
+        console.log('water:', newWaterValue);
+      };
+
+    handleWaterInputChange = event => {
+    this.setState({waterGoal: event.target.value === '' ? '' : Number(event.target.value)});
+    };
+
+    handleWasteSliderChange = (event, newWasteValue) => {
+        this.setState({wasteGoal: newWasteValue});
+        console.log('waste:', newWasteValue);
+      };
+
+    handleWasteInputChange = event => {
+    this.setState({wasteGoal: event.target.value === '' ? '' : Number(event.target.value)});
+    };
+
 
     render(){
         const { classes } = this.props;
@@ -145,22 +163,19 @@ class SignUp extends Component {
                     </div>
                 </ClickAwayListener>
 
-                    <WaterGoalSlider />
+                    <WaterGoalSlider value={this.state.waterGoal} handleWaterSliderChange={this.handleWaterSliderChange} handleWaterInputChange={this.handleWaterInputChange}/>
                     Pounds of Waste Contribution Goal
-                    <WasteGoalSlider />
+                    <WasteGoalSlider value={this.state.wasteGoal} handleWasteSliderChange={this.handleWasteSliderChange} handleWasteInputChange={this.handleWasteInputChange}/>
                 </div>
             <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.submitNewUser}>
                     Submit
             </Button>
             <div>
-                <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToClosetSave}>
-                    Get Started
+                <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToLogin}>
+                    Back
                 </Button>
                 <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToAbout}>
                     About
-                </Button>
-                <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToLogin}>
-                    Back
                 </Button>
             </div>
         </form>

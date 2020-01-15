@@ -8,8 +8,16 @@ import App from './Components/App/App';
 import * as serviceWorker from './serviceWorker';
 
 
+let userGoals = (state = [], action) => {
+    if(action.type === 'USER_SETTINGS') {
+        return state;
+    }
+    return state;
+}
+
 const storeInstance = createStore(
     combineReducers({
+        userGoals
     }),
     applyMiddleware(logger)
 )

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Slider from '@material-ui/core/Slider';
@@ -18,22 +18,11 @@ const useStyles = makeStyles({
     marginRight: 30,
     color: 'white',
   },
-
 });
   
-export default function WasteGoalSlider() {
+export default function WasteGoalSlider(props) {
   const classes = useStyles();
-  const [value, setValue] = React.useState(120);
-
-  const handleSliderChange = (event, newValue) => {
-    setValue(newValue);
-    console.log('waste:', newValue);
-    
-  };
-
-  const handleInputChange = event => {
-    setValue(event.target.value === '' ? '' : Number(event.target.value));
-  };
+  const [value, setValue] = React.useState(80);
 
   const handleBlur = () => {
     if (value < 0) {
@@ -50,8 +39,8 @@ export default function WasteGoalSlider() {
         </Grid>
         <Grid item xs>
           <Slider
-            value={typeof value === 'number' ? value : 0}
-            onChange={handleSliderChange}
+            value={typeof props.value === 'number' ? props.value : 0}
+            onChange={props.handleWasteSliderChange}
             aria-labelledby="input-slider"
             min={0}
             max={160}
@@ -63,7 +52,7 @@ export default function WasteGoalSlider() {
             className={classes.input}
             value={value}
             margin="dense"
-            onChange={handleInputChange}
+            onChange={props.handleWasteInputChange}
             onBlur={handleBlur}
             inputProps={{
               step: 10,
