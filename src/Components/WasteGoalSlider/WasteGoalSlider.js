@@ -7,14 +7,14 @@ import Input from '@material-ui/core/Input';
 const useStyles = makeStyles({
   root: {
     width: 380,
-    marginLeft: 20,
+    marginLeft: 40,
     marginRight: 40,
   },
   markLabel: {
     marginRight: 100,
   },
   input: {
-    width: 30,
+    width: 60,
     marginRight: 30,
     color: 'white',
   },
