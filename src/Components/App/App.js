@@ -32,7 +32,7 @@ class App extends Component {
           <Route path="/about" component={ About } />
           <Route path="/try" component={ TryIt } />
           <Route path="/signup" component={ SignUp } />
-          <ProtectedRoute path="/" component={ Closet } />
+          <ProtectedRoute exact path="/" component={ Closet } />
           <ProtectedRoute path="/item" component={ItemCard} />
           <ProtectedRoute path="/graph" component={ Graph } />
           <ProtectedRoute path="/account" component={ AccountSettings } />

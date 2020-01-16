@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-    // connect get redux's: props, dispatch
+import { connect } from 'react-redux';
 import ItemCard from '../ItemCard/ItemCard';
 import WaterProgressBar from '../WaterProgressBar/WaterProgressBar';
 import WasteProgressBar from '../WasteProgressBar/WasteProgressBar';
@@ -31,6 +30,10 @@ const styles = theme => ({
 
 class Closet extends Component {
 
+    componentDidMount = () => {
+        console.log('user is:', this.props.user);
+        
+    }
     // routes
     goToGraph = () => {
         this.props.history.push(`/graph`);
@@ -48,7 +51,7 @@ class Closet extends Component {
         const { classes } = this.props;
         return (
             <div>
-                <h3>Hello, {this.username}</h3><LogOutButton className="log-in" />
+                <h3>Hello, {this.props.user.username}</h3><LogOutButton className="log-in" />
                 <WaterProgressBar />
                 <WasteProgressBar />
                 <section className="closetSticky">
@@ -71,6 +74,8 @@ class Closet extends Component {
     }
 }
 
-export default withStyles(styles)(Closet);
+const mapStateToProps = state => ({
+    user: state.user,
+  });
 
-
+export default connect(mapStateToProps)(withStyles(styles)(Closet));

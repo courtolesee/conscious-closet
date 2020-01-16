@@ -55,7 +55,7 @@ export default function WasteGoalSlider(props) {
             onChange={props.handleWasteInputChange}
             onBlur={handleBlur}
             inputProps={{
-              step: 10,
+              step: 1,
               min: 0,
               max: 160,
               type: 'number',
