@@ -65,6 +65,7 @@ class Login extends Component {
     render(){
       const { classes } = this.props;
         return (
+          <>
             <div>
             {this.props.errors.loginMessage && (
               <h2
@@ -99,12 +100,6 @@ class Login extends Component {
                 </label>
               </div>
               <div>
-                {/* <input
-                  className="log-in"
-                  type="submit"
-                  name="submit"
-                  value="Log In"
-                /> */}
                 <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} 
                 type="submit">
                   Login
@@ -112,6 +107,7 @@ class Login extends Component {
               </div>
             </form>
             <center>
+            New User? Sign Up.
             <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} 
             onClick={() => {
               this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})
@@ -120,24 +116,18 @@ class Login extends Component {
             </Button>
             </center>
           </div>
-        );
-            {/* <div>
-                <h1>Login</h1>
-                <input placeholder="username"/><br/>
-                <input placeholder="password"/>
-                
-                <button onClick={this.goToCloset}>Sign In</button>
-            </div> 
+
             <div>
                 What's Conscious Closet? <br/> Learn More. <br/>
-                <button onClick={this.goToTryIt}>Try It!</button><button onClick={this.goToAbout}>About</button>
+                <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToTryIt}>
+                Try It!
+                </Button>
+                <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToAbout}>
+                About
+                </Button>
             </div>
-            <div>
-                New User? Sign Up.
-                <br/><button onClick={this.goToSignUp}>Sign Up</button>
-            </div>
-        </>
-        ) */}
+      </>
+      )
     }
 }
 
