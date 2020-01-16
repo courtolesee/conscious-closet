@@ -1,5 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Button from '@material-ui/core/Button';
+import classNames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+    fab: {
+      margin: theme.spacing(2),
+    },
+    button: {
+        margin: theme.spacing(),
+      },
+      input: {
+        display: 'none',
+    },
+    cssRoot: {
+        color: 'white',
+        backgroundColor: '#F28705',
+    },
+  });
 
 class About extends Component {
 
@@ -16,15 +35,22 @@ class About extends Component {
     }
 
     render(){
+        const { classes } = this.props;
         return (
         <div>
             <h2>About</h2>
-            <button onClick={this.goToLogin}>Login</button>
-            <button onClick={this.goToTryIt}>Try It!</button>
-            <button onClick={this.goToSignUp}>Sign Up!</button>
+            <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToLogin}>
+                Login
+            </Button>
+            <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToTryIt}>
+                Try It!
+            </Button>
+            <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToSignUp}>
+                Sign Up
+            </Button>
         </div> 
         )
     }
 }
 
-export default connect() (About);
+export default connect()(withStyles(styles)(About));

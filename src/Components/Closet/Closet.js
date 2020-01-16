@@ -47,6 +47,7 @@ class Closet extends Component {
         const { classes } = this.props;
         return (
             <div>
+                <h3>Hello, {this.username}</h3>
                 <WaterProgressBar />
                 <WasteProgressBar />
                 <section className="closetSticky">
