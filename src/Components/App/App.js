@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 // component imports
-import Login from '../Login/Login';
 import About from '../About/About';
 import TryIt from '../TryIt/TryIt';
 import SignUp from '../SignUp/SignUp';
@@ -30,17 +29,16 @@ class App extends Component {
         Conscious Closet
       </header>
         <Router>
-          <Route exact path="/" component={ Login } />
           <Route path="/about" component={ About } />
           <Route path="/try" component={ TryIt } />
           <Route path="/signup" component={ SignUp } />
-          <Route path="/closet" component={ Closet } />
-          <Route path="/item" component={ItemCard} />
-          <Route path="/graph" component={ Graph } />
-          <Route path="/account" component={ AccountSettings } />
-          <Route path="/add" component={ AddNew } />
-          <Route path="/delete" component={ Delete } />
-          <Route path="/edit" component={ Edit } />
+          <ProtectedRoute path="/" component={ Closet } />
+          <ProtectedRoute path="/item" component={ItemCard} />
+          <ProtectedRoute path="/graph" component={ Graph } />
+          <ProtectedRoute path="/account" component={ AccountSettings } />
+          <ProtectedRoute path="/add" component={ AddNew } />
+          <ProtectedRoute path="/delete" component={ Delete } />
+          <ProtectedRoute path="/edit" component={ Edit } />
         </Router>
     </div>
     );

@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 class AccountSettings extends Component {
 
     goToCloset = () => {
-        this.props.history.push(`/closet`);
+        this.props.history.push(`/`);
     }
 
     goToClosetSave = () => {
         // will send updates to DB
-        this.props.history.push(`/closet`);
+        this.props.history.push(`/`);
     }
 
 

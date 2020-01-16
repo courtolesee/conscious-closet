@@ -6,7 +6,7 @@ class Delete extends Component {
 
     goToClosetSave = () => {
         // will trigger math and delete from DB
-        this.props.history.push(`/closet`);
+        this.props.history.push(`/`);
     }
 
     goToEdit = () => {
@@ -14,7 +14,7 @@ class Delete extends Component {
     }
 
     goToCloset = () => {
-        this.props.history.push(`/closet`);
+        this.props.history.push(`/`);
     }
 
     render(){

@@ -11,11 +11,11 @@ class Edit extends Component {
 
     goToClosetSave = () => {
         // will trigger math and edit DB
-        this.props.history.push(`/closet`);
+        this.props.history.push(`/`);
     }
 
     goToCloset = () => {
-        this.props.history.push(`/closet`);
+        this.props.history.push(`/`);
     }
 
     render(){

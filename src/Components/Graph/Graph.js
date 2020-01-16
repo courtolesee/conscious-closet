@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class Graph extends Component {
 
     goToCloset = () => {
-        this.props.history.push(`/closet`);
+        this.props.history.push(`/`);
     }
 
     render(){

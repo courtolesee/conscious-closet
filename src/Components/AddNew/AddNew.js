@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 class AddNew extends Component {
 
     goToCloset = () => {
-        this.props.history.push(`/closet`);
+        this.props.history.push(`/`);
     }
 
     goToClosetSave = () => {
         // will new to DB
         // some alert that it worked
-        this.props.history.push(`/closet`);
+        this.props.history.push(`/`);
     }
 
     render(){

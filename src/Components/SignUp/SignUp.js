@@ -55,7 +55,7 @@ class SignUp extends Component {
     // routes
     goToClosetSave = () => {
         // will send new user info to db
-        this.props.history.push(`/closet`);
+        this.props.history.push(`/`);
     }
 
     goToAbout = ()=>{
@@ -97,7 +97,7 @@ class SignUp extends Component {
                     wasteGoal: this.state.wasteGoal,
                 },
             });
-            this.props.history.push(`/closet`)
+            this.props.history.push(`/`)
         } else {
             this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
         }
