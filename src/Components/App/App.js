@@ -2,7 +2,7 @@ import { HashRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 // component imports
 import Login from '../Login/Login';

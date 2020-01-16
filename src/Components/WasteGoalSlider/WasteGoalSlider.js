@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   
 export default function WasteGoalSlider(props) {
   const classes = useStyles();
-  const [value, setValue] = React.useState(80);
+  const [value, setValue] = useState(80);
 
   const handleBlur = () => {
     if (value < 0) {
@@ -50,7 +50,7 @@ export default function WasteGoalSlider(props) {
         <Grid item>
           <Input
             className={classes.input}
-            value={value}
+            value={props.value}
             margin="dense"
             onChange={props.handleWasteInputChange}
             onBlur={handleBlur}
