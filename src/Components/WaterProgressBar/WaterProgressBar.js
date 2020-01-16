@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 // material UI
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -33,12 +34,20 @@ const styles = theme => ({
     },
   });
 
+
 class WaterProgressBar extends Component {
+
+    componentDidMount = () => {
+        console.log('user object:', this.props.userInfo);  
+        console.log('user is:', this.props.username);  
+        console.log('water goal is', this.props.waterGoal);
+        console.log('actual goal is', this.props.actualWater);
+    }
 
     state = {
         open: false,
-        completed: 0,
-        goal: 100,
+        completed: this.props.actualWater,
+        goal: this.props.waterGoal,
       };
 
     handleTooltipClose = () => {
@@ -100,4 +109,13 @@ WaterProgressBar.propTypes = {
     classes: PropTypes.object.isRequired,
   };
 
-export default withStyles(styles)(WaterProgressBar);
+const mapStateToProps = state => ({
+    userInfo: state.user,
+    username: state.user.username,
+    waterGoal: state.user.water_goal,
+    wasteGoal: state.user.waste_goal,
+    actualWater: state.user.actual_water,
+    actualWaste: state.user.actual_waste
+});
+
+export default connect(mapStateToProps)(withStyles(styles)(WaterProgressBar));

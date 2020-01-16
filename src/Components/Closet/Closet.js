@@ -30,10 +30,6 @@ const styles = theme => ({
 
 class Closet extends Component {
 
-    componentDidMount = () => {
-        console.log('user is:', this.props.user);
-        
-    }
     // routes
     goToGraph = () => {
         this.props.history.push(`/graph`);
