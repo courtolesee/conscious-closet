@@ -107,7 +107,7 @@ class Login extends Component {
               </div>
             </form>
             <center>
-            New User? Sign Up.
+            New User? Sign Up. <br/>
             <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} 
             onClick={() => {
               this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})
