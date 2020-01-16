@@ -57,7 +57,7 @@ export default function WasteGoalSlider(props) {
             inputProps={{
               step: 10,
               min: 0,
-              max: 200,
+              max: 160,
               type: 'number',
               'aria-labelledby': 'input-slider',
             }}

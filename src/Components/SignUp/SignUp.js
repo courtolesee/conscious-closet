@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import WaterGoalSlider from '../WaterGoalSlider/WaterGoalSlider';
 import WasteGoalSlider from '../WasteGoalSlider/WasteGoalSlider';
 import { withStyles } from '@material-ui/core/styles';
@@ -96,14 +97,14 @@ class SignUp extends Component {
                     wasteGoal: this.state.wasteGoal,
                 },
             });
+            this.props.history.push(`/closet`)
         } else {
-            alert('please input all data!')
+            this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
         }
     }
 
     handleInputChangeFor = propertyName => (event) => {
         console.log('changing', event.target.value);
-        
         this.setState({
             [propertyName]: event.target.value,
         });
@@ -131,13 +132,31 @@ class SignUp extends Component {
     render(){
         const { classes } = this.props;
         return (
+        <>
         <form onSubmit={this.registerUser}><h1>Sign Up</h1>
 
                 <div>
-                    <input type="text" value={this.state.username} onChange={this.handleInputChangeFor('username')} placeholder="username"/><br/>
-                    <input type="text" value={this.state.password} onChange={this.handleInputChangeFor('password')} placeholder="password"/><br/>
+                    <label htmlFor="username">
+                        Username:
+                        <input
+                            type="text"
+                            name="username"
+                            value={this.state.username}
+                            onChange={this.handleInputChangeFor('username')}
+                        />
+                    </label>
                 </div>
-
+                <div>
+                    <label htmlFor="password">
+                    Password:
+                    <input
+                        type="password"
+                        name="password"
+                        value={this.state.password}
+                        onChange={this.handleInputChangeFor('password')}
+                    />
+                    </label>
+                </div>
                 <div>
                     New Items Per Year:<input type="number" value={this.state.newItems} onChange={this.handleInputChangeFor('newItems')} placeholder="example: 6, 12, 24"/><br/>
                 </div>
@@ -167,18 +186,21 @@ class SignUp extends Component {
                     Pounds of Waste Contribution Goal
                     <WasteGoalSlider value={this.state.wasteGoal} handleWasteSliderChange={this.handleWasteSliderChange} handleWasteInputChange={this.handleWasteInputChange}/>
                 </div>
-            <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.submitNewUser}>
+            <Button type="submit" size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.submitNewUser}>
                     Submit
             </Button>
-            <div>
-                <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToLogin}>
-                    Back
-                </Button>
-                <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToAbout}>
-                    About
-                </Button>
-            </div>
+
         </form>
+
+            <div>
+            <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToLogin}>
+                Back
+            </Button>
+            <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToAbout}>
+                About
+            </Button>
+            </div>
+        </>
         )
     }
 }
@@ -187,4 +209,8 @@ SignUp.propTypes = {
     classes: PropTypes.object.isRequired,
   };
 
-  export default withStyles(styles)(SignUp);
+const mapStateToProps = state => ({
+    errors: state.errors,
+});
+
+export default connect(mapStateToProps)(withStyles(styles)(SignUp));

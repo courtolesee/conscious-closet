@@ -55,9 +55,9 @@ import Input from '@material-ui/core/Input';
               onChange={props.handleWaterInputChange}
               onBlur={handleBlur}
               inputProps={{
-                step: 10,
+                step: 1,
                 min: 0,
-                max: 200,
+                max: 270000,
                 type: 'number',
                 'aria-labelledby': 'input-slider',
               }}
