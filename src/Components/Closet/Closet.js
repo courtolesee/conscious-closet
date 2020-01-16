@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import ItemCard from '../ItemCard/ItemCard';
 import WaterProgressBar from '../WaterProgressBar/WaterProgressBar';
 import WasteProgressBar from '../WasteProgressBar/WasteProgressBar';
+import LogOutButton from '../LogOutButton/LogOutButton';
 
 // material UI
 import { withStyles } from '@material-ui/core/styles';
@@ -47,7 +48,7 @@ class Closet extends Component {
         const { classes } = this.props;
         return (
             <div>
-                <h3>Hello, {this.username}</h3>
+                <h3>Hello, {this.username}</h3><LogOutButton className="log-in" />
                 <WaterProgressBar />
                 <WasteProgressBar />
                 <section className="closetSticky">
