@@ -34,7 +34,6 @@ const styles = theme => ({
     },
   });
 
-
 class WaterProgressBar extends Component {
 
     componentDidMount = () => {
@@ -65,19 +64,23 @@ class WaterProgressBar extends Component {
         clearInterval(this.timer);
     }
 
-    progress = () => {
-        const { completed } = this.state;
-        if (completed === 100) {
-            this.setState({ completed: 0 });
-        } else {
-            this.setState({ completed: 55 });
-        }
-    };
 
-    render(){
+    render(props){
         const { classes } = this.props;
+        
+        let MIN = 0;
+        let MAX = this.state.goal;
+        const bar = this.state.completed;
+        const normalise = value => {
+            const thing = (Number(bar) - MIN) * 100 / (Number(MAX) - MIN)
+            console.log(thing);
+            return thing;
+        };
+
         return (
-            <div>
+            <div> 
+            {/* {JSON.stringify(this.props)} */}
+            {JSON.stringify(this.state)}
                 <section>Total Potential Water Usage 
                     <ClickAwayListener onClickAway={this.handleTooltipClose}>
                     <div>
@@ -95,7 +98,8 @@ class WaterProgressBar extends Component {
                         title={`${this.state.completed}/${this.state.goal}`}
                         placement="left-end"
                         arrow>
-                        <LinearProgress classes={{colorPrimary: classes.linearColorPrimary, barColorPrimary: classes.linearBarColorPrimary}} onClick={this.handleTooltipOpen} color="primary" variant="determinate" value={this.state.completed} style={{height:"20px"}}/>
+                        <LinearProgress value={normalise(this.state.completed)} classes={{colorPrimary: classes.linearColorPrimary, barColorPrimary: classes.linearBarColorPrimary}} 
+                        onClick={this.handleTooltipOpen} color="primary" variant="determinate" style={{height:"20px"}}/>
                         </Tooltip>
                     </div>
                     </ClickAwayListener>
@@ -113,9 +117,7 @@ const mapStateToProps = state => ({
     userInfo: state.user,
     username: state.user.username,
     waterGoal: state.user.water_goal,
-    wasteGoal: state.user.waste_goal,
     actualWater: state.user.actual_water,
-    actualWaste: state.user.actual_waste
 });
 
 export default connect(mapStateToProps)(withStyles(styles)(WaterProgressBar));

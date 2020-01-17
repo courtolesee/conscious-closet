@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 // material UI
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -37,8 +38,8 @@ class WasteProgressBar extends Component {
 
   state = {
         open: false,  
-        completed: 0,
-        goal: 100,
+        completed: this.props.actualWaste,
+        goal: this.props.wasteGoal,
       };
 
     handleTooltipClose = () => {
@@ -56,19 +57,10 @@ class WasteProgressBar extends Component {
         clearInterval(this.timer);
     }
 
-    progress = () => {
-        const { completed } = this.state;
-        if (completed === 100) {
-            this.setState({ completed: 0 });
-        } else {
-            this.setState({ completed: 30 });
-        }
-    };
-
     render(){
         const { classes } = this.props;
         return (
-            <div>
+            <div> {JSON.stringify(this.props)}
                 <section>Total Potential Waste Contribution
                     <ClickAwayListener onClickAway={this.handleTooltipClose}>
                     <div>
@@ -86,7 +78,8 @@ class WasteProgressBar extends Component {
                         title={`${this.state.completed}/${this.state.goal}`}
                         placement="left-end"
                         arrow>
-                        <LinearProgress classes={{colorPrimary: classes.linearColorPrimary, barColorPrimary: classes.linearBarColorPrimary}} onClick={this.handleTooltipOpen} color="primary" variant="determinate" value={this.state.completed} style={{height:"20px"}}/>
+                        <LinearProgress classes={{colorPrimary: classes.linearColorPrimary, barColorPrimary: classes.linearBarColorPrimary}} 
+                        onClick={this.handleTooltipOpen} color="primary" variant="determinate" value={this.state.completed} style={{height:"20px"}}/>
                         </Tooltip>
                     </div>
                     </ClickAwayListener>
@@ -100,4 +93,11 @@ WasteProgressBar.propTypes = {
     classes: PropTypes.object.isRequired,
   };
 
-export default withStyles(styles)(WasteProgressBar);
+const mapStateToProps = state => ({
+    userInfo: state.user,
+    username: state.user.username,
+    wasteGoal: state.user.waste_goal,
+    actualWaste: state.user.actual_waste
+});
+
+export default connect(mapStateToProps)(withStyles(styles)(WasteProgressBar));

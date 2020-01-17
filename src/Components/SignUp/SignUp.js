@@ -92,9 +92,9 @@ class SignUp extends Component {
                 payload: {
                     username: this.state.username,
                     password: this.state.password, 
-                    newItems: this.state.newItems,
-                    waterGoal: this.state.waterGoal,
-                    wasteGoal: this.state.wasteGoal,
+                    newItems: Number(this.state.newItems),
+                    waterGoal: Number(this.state.waterGoal),
+                    wasteGoal: Number(this.state.wasteGoal),
                 },
             });
             this.props.history.push(`/`)
