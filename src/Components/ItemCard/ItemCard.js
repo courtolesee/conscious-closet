@@ -8,10 +8,14 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import classNames from 'classnames';
 
-const styles = {
+const styles = theme => ({
     card: {
       minWidth: 275,
+      backgroundColor: 'black',
+      color: 'white',
+      marginBottom: '6px'
     },
     bullet: {
       display: 'inline-block',
@@ -23,8 +27,18 @@ const styles = {
     },
     pos: {
       marginBottom: 12,
+    },    
+    button: {
+        margin: theme.spacing(),
+      },
+      input: {
+        display: 'none',
     },
-  };
+    cssRoot: {
+        color: 'white',
+        backgroundColor: '#F28705',
+    },
+  });
 
 
 class ItemCard extends Component {
@@ -45,20 +59,21 @@ class ItemCard extends Component {
         <Card className={classes.card}>
         <CardContent>
           <Typography variant="h5" component="h2">
-            {bull}{this.props.closet.name}
+            {this.props.closet.name}
           </Typography>
           <Typography component="p">
             {bull}{this.props.closet.type_id}
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" onClick={this.goToEdit}>Edit</Button>
-          <Button size="small" onClick={this.goToDelete}>Delete</Button>
+          <Button size="small" onClick={this.goToEdit}
+          color="primary" className={classNames(classes.margin, classes.cssRoot)}>Edit</Button>
+          <Button size="small" onClick={this.goToDelete}
+          color="primary" className={classNames(classes.margin, classes.cssRoot)}>Delete</Button>
         </CardActions>
       </Card>
         )
     }
 }
-
 
 export default connect()(withStyles(styles)(ItemCard));
