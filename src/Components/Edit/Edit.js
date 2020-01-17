@@ -22,7 +22,6 @@ class Edit extends Component {
         return (
         <div>
             <h1>Edit</h1>
-            <ItemCard />
             <button onClick={this.goToDelete}>Delete</button>
             <button onClick={this.goToClosetSave}>Submit</button>
             <button onClick={this.goToCloset}>Cancel</button>

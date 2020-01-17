@@ -30,7 +30,7 @@ const styles = theme => ({
 
 class Closet extends Component {
 
-    componentDidMount(){
+    componentDidMount(){        
         this.props.dispatch({type: 'FETCH_CLOSET'});
     }
 

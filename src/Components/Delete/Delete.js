@@ -21,7 +21,6 @@ class Delete extends Component {
         return (
         <div>
             <h1>Delete</h1>
-            <ItemCard />
             <button onClick={this.goToClosetSave}>Delete</button>
             <button onClick={this.goToEdit}>Edit</button>
             <button onClick={this.goToCloset}>Cancel</button>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom';
 
 // MUI
 import { withStyles } from '@material-ui/core/styles';
@@ -76,4 +77,4 @@ class ItemCard extends Component {
     }
 }
 
-export default connect()(withStyles(styles)(ItemCard));
+export default withRouter(connect()(withStyles(styles)(ItemCard)));
