@@ -59,8 +59,18 @@ class WasteProgressBar extends Component {
 
     render(){
         const { classes } = this.props;
+
+        let MIN = 0;
+        let MAX = this.state.goal;
+        const bar = this.state.completed;
+        const normalise = value => {
+            const thing = (Number(bar) - MIN) * 100 / (Number(MAX) - MIN)
+            console.log(thing);
+            return thing;
+        };
+
         return (
-            <div> {JSON.stringify(this.props)}
+            <div> 
                 <section>Total Potential Waste Contribution
                     <ClickAwayListener onClickAway={this.handleTooltipClose}>
                     <div>
@@ -78,8 +88,8 @@ class WasteProgressBar extends Component {
                         title={`${this.state.completed}/${this.state.goal}`}
                         placement="left-end"
                         arrow>
-                        <LinearProgress classes={{colorPrimary: classes.linearColorPrimary, barColorPrimary: classes.linearBarColorPrimary}} 
-                        onClick={this.handleTooltipOpen} color="primary" variant="determinate" value={this.state.completed} style={{height:"20px"}}/>
+                        <LinearProgress value={normalise(this.state.completed)} classes={{colorPrimary: classes.linearColorPrimary, barColorPrimary: classes.linearBarColorPrimary}} 
+                        onClick={this.handleTooltipOpen} color="primary" variant="determinate" style={{height:"20px"}}/>
                         </Tooltip>
                     </div>
                     </ClickAwayListener>

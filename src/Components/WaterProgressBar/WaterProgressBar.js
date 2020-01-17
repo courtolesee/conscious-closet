@@ -79,8 +79,6 @@ class WaterProgressBar extends Component {
 
         return (
             <div> 
-            {/* {JSON.stringify(this.props)} */}
-            {JSON.stringify(this.state)}
                 <section>Total Potential Water Usage 
                     <ClickAwayListener onClickAway={this.handleTooltipClose}>
                     <div>
