@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import WaterProgressBar from '../WaterProgressBar/WaterProgressBar';
 import WasteProgressBar from '../WasteProgressBar/WasteProgressBar';
-import ItemCard from '../ItemCard/ItemCard';
 import GraphBtn from './ToolTips/GraphBtn';
 import AccountSettingsBtn from './ToolTips/AccountSettings';
 

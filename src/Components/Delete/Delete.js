@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ItemCard from '../ItemCard/ItemCard';
 
 class Delete extends Component {
 
