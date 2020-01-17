@@ -45,7 +45,7 @@ class ItemCard extends Component {
         <Card className={classes.card}>
         <CardContent>
           <Typography variant="h5" component="h2">
-            {this.props.closet.name}
+            {bull}{this.props.closet.name}
           </Typography>
           <Typography component="p">
             {bull}{this.props.closet.type_id}
@@ -60,9 +60,5 @@ class ItemCard extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    user: state.user,
-    closet: state.closet,
-  });
 
-export default connect(mapStateToProps)(withStyles(styles)(ItemCard));
+export default connect()(withStyles(styles)(ItemCard));

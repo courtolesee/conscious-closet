@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
     pool.query(queryText, [userId])
         .then( (result) => {
             console.log('---------> closet result', result);
-            res.send(result.rows[0]);
+            res.send(result.rows);
         })
         .catch((error) => {
             console.log('-------error----', error);

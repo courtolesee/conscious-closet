@@ -67,7 +67,9 @@ class Closet extends Component {
                     <Fab color="primary" aria-label="Add" onClick={this.goToAddNew} style={{backgroundColor:"#03A696", marginLeft:"300px"}} size="small">
                         <AddIcon />
                     </Fab>
-                    <ItemCard />
+                    {this.props.closet.map((closet, i)=>{
+                        return <ItemCard key={i} closet={closet}/>
+                    })}
                 </section>
             </div>
         )
