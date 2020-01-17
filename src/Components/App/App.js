@@ -8,6 +8,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import About from '../About/About';
 import TryIt from '../TryIt/TryIt';
 import SignUp from '../SignUp/SignUp';
+import Login from '../Login/Login';
 import Closet from '../Closet/Closet';
 import Graph from '../Graph/Graph';
 import AccountSettings from '../AccountSettings/AccountSettings';
@@ -31,13 +32,13 @@ class App extends Component {
           <Route path="/about" component={ About } />
           <Route path="/try" component={ TryIt } />
           <Route path="/signup" component={ SignUp } />
+          <Route path="/login" component={ Login } />
           <ProtectedRoute exact path="/" component={ Closet } />
           <ProtectedRoute path="/item" component={ItemCard} />
           <ProtectedRoute path="/graph" component={ Graph } />
           <ProtectedRoute path="/account" component={ AccountSettings } />
           <ProtectedRoute path="/add" component={ AddNew } />
           <ProtectedRoute path="/delete" component={ Delete } />
-          {/* <ProtectedRoute path="/edit" component={ Edit } /> */}
         </Router>
     </div>
     );

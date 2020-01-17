@@ -63,7 +63,7 @@ class SignUp extends Component {
     }
 
     goToLogin = ()=>{
-        this.props.history.push(`/`);
+        this.props.history.push(`/login`);
     }
 
     // tool tip funcitons
