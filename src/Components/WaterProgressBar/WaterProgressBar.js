@@ -84,7 +84,7 @@ class WaterProgressBar extends Component {
 
         return (
             <div> 
-                <section>Total Potential Water Usage 
+                <section>Total Gallons of Potential Water Usage 
                     <ClickAwayListener onClickAway={this.handleTooltipClose}>
                     <div>
                         <Tooltip
@@ -99,7 +99,7 @@ class WaterProgressBar extends Component {
                         disableHoverListener
                         disableTouchListener
                         title=
-                        {`${Number(this.props.actualWater).toLocaleString()}/${Number(this.props.waterGoal).toLocaleString()}`}
+                        {`${Number(this.props.actualWater).toLocaleString()} / ${Number(this.props.waterGoal).toLocaleString()}`}
                         placement="left-end"
                         arrow>
                         <LinearProgress value={normalise(this.state.completed)} classes={{colorPrimary: classes.linearColorPrimary, barColorPrimary: classes.linearBarColorPrimary}} 

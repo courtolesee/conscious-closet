@@ -38,7 +38,7 @@ class App extends Component {
           <ProtectedRoute path="/account" component={ AccountSettings } />
           <ProtectedRoute path="/add" component={ AddNew } />
           <ProtectedRoute path="/delete" component={ Delete } />
-          <ProtectedRoute path="/edit" component={ Edit } />
+          {/* <ProtectedRoute path="/edit" component={ Edit } /> */}
         </Router>
     </div>
     );

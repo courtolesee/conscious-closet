@@ -70,7 +70,7 @@ class WasteProgressBar extends Component {
 
         return (
             <div> 
-                <section>Total Potential Waste Contribution
+                <section>Total Pounds of Potential Waste Contribution
                     <ClickAwayListener onClickAway={this.handleTooltipClose}>
                     <div>
                         <Tooltip
@@ -84,7 +84,7 @@ class WasteProgressBar extends Component {
                         disableFocusListener
                         disableHoverListener
                         disableTouchListener
-                        title={`${this.state.completed}/${this.state.goal}`}
+                        title={`${this.state.completed} / ${this.state.goal}`}
                         placement="left-end"
                         arrow>
                         <LinearProgress value={normalise(this.state.completed)} classes={{colorPrimary: classes.linearColorPrimary, barColorPrimary: classes.linearBarColorPrimary}} 

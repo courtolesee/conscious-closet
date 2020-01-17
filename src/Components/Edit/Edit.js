@@ -39,11 +39,14 @@ const styles = theme => ({
   });
 
 class Edit extends Component {
-    state = {
-        name: '',
-        type: ''
-    }
 
+
+
+
+
+
+
+    // routes
     goToDelete = () => {
         this.props.history.push(`/delete`);
     }
@@ -64,6 +67,7 @@ class Edit extends Component {
         return (
         <div>
             <h1>Edit</h1>
+       
             <Card className={classes.card}>
                 <CardContent>
                     <Typography variant="h5" component="h2">
