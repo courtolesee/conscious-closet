@@ -43,6 +43,10 @@ class WaterProgressBar extends Component {
         console.log('actual goal is', this.props.actualWater);
     }
 
+    formatNum = (num) => {
+        return num.toLocaleString();
+    }
+
     state = {
         open: false,
         completed: this.props.actualWater,
@@ -63,6 +67,8 @@ class WaterProgressBar extends Component {
     componentWillUnmount() {
         clearInterval(this.timer);
     }
+
+    
 
 
     render(props){
@@ -92,7 +98,8 @@ class WaterProgressBar extends Component {
                         disableFocusListener
                         disableHoverListener
                         disableTouchListener
-                        title={`${this.state.completed}/${this.state.goal}`}
+                        title=
+                        {`${Number(this.props.actualWater).toLocaleString()}/${Number(this.props.waterGoal).toLocaleString()}`}
                         placement="left-end"
                         arrow>
                         <LinearProgress value={normalise(this.state.completed)} classes={{colorPrimary: classes.linearColorPrimary, barColorPrimary: classes.linearBarColorPrimary}} 

@@ -118,11 +118,11 @@ class Login extends Component {
 
             <div>
                 What's Conscious Closet? <br/> Learn More. <br/>
-                <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToTryIt}>
-                Try It!
-                </Button>
                 <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToAbout}>
                 About
+                </Button>
+                <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToTryIt}>
+                Try It!
                 </Button>
             </div>
       </>

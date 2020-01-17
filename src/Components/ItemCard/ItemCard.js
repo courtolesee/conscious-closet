@@ -14,7 +14,7 @@ import classNames from 'classnames';
 const styles = theme => ({
     card: {
       minWidth: 275,
-      backgroundColor: 'black',
+      backgroundColor: '#2b3636',
       color: 'white',
       marginBottom: '6px'
     },
@@ -46,6 +46,7 @@ class ItemCard extends Component {
 
     goToEdit = () => {
         this.props.history.push(`/edit`);
+        // this.props.dispatch({type: 'GOTO_EDIT', payload: {...this.props.}})
     }
 
     goToDelete = () => {
