@@ -64,9 +64,8 @@ class WasteProgressBar extends Component {
         let MAX = this.state.goal;
         const bar = this.state.completed;
         const normalise = value => {
-            const thing = (Number(bar) - MIN) * 100 / (Number(MAX) - MIN)
-            console.log(thing);
-            return thing;
+            const normalizedNum = (Number(bar) - MIN) * 100 / (Number(MAX) - MIN)
+            return normalizedNum;
         };
 
         return (

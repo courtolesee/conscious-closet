@@ -30,6 +30,10 @@ const styles = theme => ({
 
 class Closet extends Component {
 
+    componentDidMount(){
+        this.props.dispatch({type: 'FETCH_CLOSET'});
+    }
+
     // routes
     goToGraph = () => {
         this.props.history.push(`/graph`);
@@ -46,7 +50,9 @@ class Closet extends Component {
     render(){
         const { classes } = this.props;
         return (
-            <div>
+            <div> 
+            {JSON.stringify(this.props.closet)}<br/> 
+            {/* {JSON.stringify(this.props.user)} */}
                 <h3>Hello, {this.props.user.username}</h3><LogOutButton className="log-in" />
                 <WaterProgressBar />
                 <WasteProgressBar />
@@ -72,6 +78,7 @@ class Closet extends Component {
 
 const mapStateToProps = state => ({
     user: state.user,
+    closet: state.closet,
   });
 
 export default connect(mapStateToProps)(withStyles(styles)(Closet));

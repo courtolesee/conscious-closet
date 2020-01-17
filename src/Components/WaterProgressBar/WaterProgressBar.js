@@ -37,7 +37,7 @@ const styles = theme => ({
 class WaterProgressBar extends Component {
 
     componentDidMount = () => {
-        console.log('user object:', this.props.userInfo);  
+        console.log('user object:', this.props.userInfo);
         console.log('user is:', this.props.username);  
         console.log('water goal is', this.props.waterGoal);
         console.log('actual goal is', this.props.actualWater);
@@ -72,9 +72,8 @@ class WaterProgressBar extends Component {
         let MAX = this.state.goal;
         const bar = this.state.completed;
         const normalise = value => {
-            const thing = (Number(bar) - MIN) * 100 / (Number(MAX) - MIN)
-            console.log(thing);
-            return thing;
+            const normalizedNum = (Number(bar) - MIN) * 100 / (Number(MAX) - MIN)
+            return normalizedNum;
         };
 
         return (
