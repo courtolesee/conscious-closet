@@ -9,10 +9,6 @@ class Delete extends Component {
         this.props.history.push(`/`);
     }
 
-    goToEdit = () => {
-        this.props.history.push(`/edit`);
-    }
-
     goToCloset = () => {
         this.props.history.push(`/`);
     }
@@ -22,7 +18,6 @@ class Delete extends Component {
         <div>
             <h1>Delete</h1>
             <button onClick={this.goToClosetSave}>Delete</button>
-            <button onClick={this.goToEdit}>Edit</button>
             <button onClick={this.goToCloset}>Cancel</button>
         </div> 
         )

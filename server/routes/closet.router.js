@@ -8,9 +8,10 @@ router.get('/', (req, res) => {
     const userId =  req.user.user_id;
     console.log('USER ID ->>>>>>>>>>>>>>', userId);
     const queryText = 
-    `SELECT "item_id", "type_id", "name" 
+    `SELECT "item_id", "type_id", "type_name", "name" 
     FROM "closet" 
-    WHERE "user_id" = $1;`;
+    WHERE "user_id" = $1
+    ORDER BY "type_name";`;
     pool.query(queryText, [userId])
         .then( (result) => {
             console.log('---------> closet result', result);

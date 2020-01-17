@@ -13,7 +13,6 @@ import Graph from '../Graph/Graph';
 import AccountSettings from '../AccountSettings/AccountSettings';
 import AddNew from '../AddNew/AddNew';
 import Delete from '../Delete/Delete';
-import Edit from '../Edit/Edit';
 import ItemCard from '../ItemCard/ItemCard';
 
 class App extends Component {
