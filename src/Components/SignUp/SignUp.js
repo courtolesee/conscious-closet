@@ -74,6 +74,7 @@ class SignUp extends Component {
     handleTooltipOpen = () => {
         this.setState({ open: true });
     };
+    
     componentDidMount() {
         this.timer = setInterval(this.progress, 500);
     }
@@ -113,7 +114,7 @@ class SignUp extends Component {
     handleWaterSliderChange = (event, newWaterValue) => {
         this.setState({waterGoal: newWaterValue});
         console.log('water:', newWaterValue);
-      };
+    };
 
     handleWaterInputChange = event => {
     this.setState({waterGoal: event.target.value === '' ? '' : Number(event.target.value)});

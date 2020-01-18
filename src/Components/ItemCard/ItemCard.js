@@ -153,16 +153,7 @@ class ItemCard extends Component {
                         </FormControl>
                     </form>  
                 </>
-               
-            
-        
             }
-
-        
-
-
-
-          
         </CardContent>
         <CardActions>
           <Button size="small" onClick={this.goToDelete}

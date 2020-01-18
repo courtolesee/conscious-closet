@@ -11,8 +11,19 @@ function* fetchCloset() {
   }
 }
 
+// function* addItem() {
+//   try{
+//     yield axios.post({ '/api/closet', action.payload });
+//     yield put ({ type: `ADD_ITEM`});
+//   }
+//   catch (error) {
+//     console.log('error posting new item', error);
+//   }
+// }
+
 function* closetSaga() {
   yield takeLatest('FETCH_CLOSET', fetchCloset);
+  // yield takeLatest('ADD_ITEM', addItem)
 }
 
 export default closetSaga;
