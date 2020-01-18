@@ -57,7 +57,7 @@ const styles = theme => ({
 class ItemCard extends Component {
     state = {
         isNameEditable: true,
-        isTypeEditable: false,
+        isTypeEditable: true,
         type: '',
         open: false,
         id: this.props.closet.item_id,
@@ -75,11 +75,17 @@ class ItemCard extends Component {
         })
     }
 
-    handleChange = name => event => {
+    handleNameChange = name => event => {
         this.setState({
           [name]: event.target.value,
         });
-      };
+    };
+
+    handleTypeChange = typeName => event => {
+        this.setState({
+            [typeName]: event.target.value,
+        })
+    }
 
     sendItemEditUpdate = (event) => {
         event.preventDefault();
@@ -114,7 +120,7 @@ class ItemCard extends Component {
                     label="Name"
                     className={classes.textField}
                     value={this.state.name}
-                    onChange={this.handleChange('name')}
+                    onChange={this.handleNameChange('name')}
                     margin="normal"
                     variant="filled"
                     style={{backgroundColor: 'white'}}
@@ -128,22 +134,16 @@ class ItemCard extends Component {
                     <form variant="h5" component="h2" autoComplete="off">
                         <Button className={classes.button} onClick={this.handleOpen}>
                         </Button>
+                        <InputLabel htmlFor="demo-simple-select-label" style={{color: 'white'}}
+                            >{this.state.typeName}</InputLabel>
                         <FormControl className={classes.formControl}>
-                            <InputLabel htmlFor="demo-controlled-open-select">Type</InputLabel>
                             <Select
-                                open={this.state.open}
-                                onClose={this.handleClose}
-                                onOpen={this.handleOpen}
-                                value={this.state.age}
-                                onChange={this.handleChange}
-                                inputProps={{
-                                name: 'type',
-                                id: 'demo-controlled-open-select',
-                                }}
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={this.typeName}
+                                onChange={this.handleTypeChange}
+                                style={{backgroundColor: 'white'}}
                             >
-                                <MenuItem value="">
-                                <em>None</em>
-                                </MenuItem>
                                 <MenuItem value={1}>t-shirt</MenuItem>
                                 <MenuItem value={2}>jeans</MenuItem>
                                 <MenuItem value={3}>shoes</MenuItem>
