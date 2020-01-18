@@ -15,6 +15,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import PropTypes from 'prop-types';
+import { log } from 'util';
 
 const styles = theme => ({
     card: {
@@ -53,6 +54,13 @@ class ItemCard extends Component {
         isTypeEditable: false,
         type: '',
         open: false,
+        id: this.props.closet.item_id,
+        typeName: this.props.closet.type_name,
+        name: this.props.closet.name,
+    }
+
+    componentDidMount = () => {
+        console.log('STATE IS------>', this.state);
     }
 
     editName = () => {
@@ -64,6 +72,11 @@ class ItemCard extends Component {
     handleChange = event => {
         this.setState({ [event.target.name]: event.target.value });
     };
+
+    sendItemEditUpdate = (event) => {
+        event.preventDefault();
+        this.props.dispatch({ type: 'SEND_UPDATE', payload: this.state })
+    }
     
     handleClose = () => {
         this.setState({ open: false });
@@ -81,9 +94,9 @@ class ItemCard extends Component {
         const { classes } = this.props;
         const bull = <span className={classes.bullet}>•</span>;
 
-        return (
+        return ( 
         <Card className={classes.card}>
-        <CardContent>
+        <CardContent> 
             <Typography variant="h5" component="h2" onClick={this.editName}>
                 {this.props.closet.name}
             </Typography>

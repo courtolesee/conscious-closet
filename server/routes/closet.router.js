@@ -1,5 +1,4 @@
 const express = require('express');
-const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 
@@ -20,6 +19,23 @@ router.get('/', (req, res) => {
         .catch((error) => {
             console.log('-------error----', error);
             res.sendStatus(500)});
+});
+
+router.put('/:id', (req, res) => {
+    // edit cardItems in closet
+    let id = req.body.item_id;
+    let typeName = req.body.type_name;
+    let name = req.body.name;
+    const queryText = `UPDATE closet SET type_name = $2, name = $3 WHERE item_id = $1;`;
+    const values = [id, typeName, name];
+    pool.query(queryText, values)
+        .then( (result) => {
+            res.send(result.rows);
+        })
+        .catch( (error) =>{
+            console.log('Error on PUT updating closet item', error);
+            res.sendStatus(500)
+        });
 });
 
 module.exports = router;
