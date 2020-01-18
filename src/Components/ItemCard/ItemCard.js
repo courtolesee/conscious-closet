@@ -15,7 +15,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import PropTypes from 'prop-types';
-import { log } from 'util';
+import TextField from '@material-ui/core/TextField';
 
 const styles = theme => ({
     card: {
@@ -45,12 +45,18 @@ const styles = theme => ({
         color: 'white',
         backgroundColor: '#F28705',
     },
+    root: {
+        '& .MuiTextField-root': {
+          margin: theme.spacing(1),
+          width: 200,
+        },
+      },
   });
 
 
 class ItemCard extends Component {
     state = {
-        nameNotEditable: false,
+        isNameEditable: true,
         isTypeEditable: false,
         type: '',
         open: false,
@@ -65,13 +71,15 @@ class ItemCard extends Component {
 
     editName = () => {
         this.setState({
-            nameNotEditable: true, 
+            isNameEditable: true, 
         })
     }
 
-    handleChange = event => {
-        this.setState({ [event.target.name]: event.target.value });
-    };
+    handleChange = name => event => {
+        this.setState({
+          [name]: event.target.value,
+        });
+      };
 
     sendItemEditUpdate = (event) => {
         event.preventDefault();
@@ -97,42 +105,64 @@ class ItemCard extends Component {
         return ( 
         <Card className={classes.card}>
         <CardContent> 
-            <Typography variant="h5" component="h2" onClick={this.editName}>
+            {this.state.isNameEditable ?
+                <><Typography variant="h5" component="h2" onClick={this.handleClose}>
                 {this.props.closet.name}
-            </Typography>
-            {this.state.nameNotEditable ?
-                    <form variant="h5" component="h2" autoComplete="off">
-                    <Button className={classes.button} onClick={this.handleOpen}>
-                    </Button>
-                    <FormControl className={classes.formControl}>
-                        <InputLabel htmlFor="demo-controlled-open-select">Type</InputLabel>
-                        <Select
-                            open={this.state.open}
-                            onClose={this.handleClose}
-                            onOpen={this.handleOpen}
-                            value={this.state.age}
-                            onChange={this.handleChange}
-                            inputProps={{
-                            name: 'type',
-                            id: 'demo-controlled-open-select',
-                            }}
-                        >
-                            <MenuItem value="">
-                            <em>None</em>
-                            </MenuItem>
-                            <MenuItem value={1}>t-shirt</MenuItem>
-                            <MenuItem value={2}>jeans</MenuItem>
-                            <MenuItem value={3}>shoes</MenuItem>
-                            <MenuItem value={4}>sweatshirt/sweater</MenuItem>
-                            <MenuItem value={5}>winter jacket</MenuItem>
-                        </Select>
-                    </FormControl>
-                </form>
-                :<>
-                <Typography component="p" onClick={this.handleClose}>
+                </Typography></>:
+                <><TextField
+                    id="filled-name"
+                    label="Name"
+                    className={classes.textField}
+                    value={this.state.name}
+                    onChange={this.handleChange('name')}
+                    margin="normal"
+                    variant="filled"
+                    style={{backgroundColor: 'white'}}
+                /></>
+            }
+            {this.state.isTypeEditable ?
+                <><Typography component="p" onClick={this.editName}>
                     {bull}{this.props.closet.type_name}
-                </Typography>
-           </>}            
+                </Typography></> :
+                <>
+                    <form variant="h5" component="h2" autoComplete="off">
+                        <Button className={classes.button} onClick={this.handleOpen}>
+                        </Button>
+                        <FormControl className={classes.formControl}>
+                            <InputLabel htmlFor="demo-controlled-open-select">Type</InputLabel>
+                            <Select
+                                open={this.state.open}
+                                onClose={this.handleClose}
+                                onOpen={this.handleOpen}
+                                value={this.state.age}
+                                onChange={this.handleChange}
+                                inputProps={{
+                                name: 'type',
+                                id: 'demo-controlled-open-select',
+                                }}
+                            >
+                                <MenuItem value="">
+                                <em>None</em>
+                                </MenuItem>
+                                <MenuItem value={1}>t-shirt</MenuItem>
+                                <MenuItem value={2}>jeans</MenuItem>
+                                <MenuItem value={3}>shoes</MenuItem>
+                                <MenuItem value={4}>sweatshirt/sweater</MenuItem>
+                                <MenuItem value={5}>winter jacket</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </form>  
+                </>
+               
+            
+        
+            }
+
+        
+
+
+
+          
         </CardContent>
         <CardActions>
           <Button size="small" onClick={this.goToDelete}
