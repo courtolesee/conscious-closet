@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest, takeEvery } from 'redux-saga/effects';
 
 function* fetchCloset() {
   try {
@@ -11,19 +11,31 @@ function* fetchCloset() {
   }
 }
 
-// function* addItem() {
-//   try{
-//     yield axios.post({ '/api/closet', action.payload });
-//     yield put ({ type: `ADD_ITEM`});
-//   }
-//   catch (error) {
-//     console.log('error posting new item', error);
-//   }
-// }
+function* changeItemName(action) {
+  try {
+    console.log('this is action payload--------->', action.payload);
+    
+    const response = yield axios.put(`/api/closet/name/${action.payload}`, {data: action.payload});
+    yield put({ type: `FETCH_CLOSET`, payload: response.data });
+    } catch (error) {
+    console.log('changing item name put failed', error);
+  }
+}
+
+function* deleteItem(action) {
+  try {
+    yield axios.delete(`/api/closet/delete/${action.payload}`);
+    yield put({type: 'FETCH_CLOSET'})
+  }
+  catch (error){
+    console.log(error);
+  }
+} 
 
 function* closetSaga() {
   yield takeLatest('FETCH_CLOSET', fetchCloset);
-  // yield takeLatest('ADD_ITEM', addItem)
+  yield takeLatest('UPDATE_NAME', changeItemName);
+  yield takeEvery('DELETE_ITEM', deleteItem)
 }
 
 export default closetSaga;

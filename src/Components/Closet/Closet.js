@@ -51,6 +51,7 @@ class Closet extends Component {
         const { classes } = this.props;
         return (
             <div> 
+            {/* {JSON.stringify(this.props.closet)} */}
                 <h3>Hello, {this.props.user.username}</h3><LogOutButton className="log-in" />
                 <WaterProgressBar />
                 <WasteProgressBar />

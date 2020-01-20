@@ -56,40 +56,44 @@ const styles = theme => ({
 
 class ItemCard extends Component {
     state = {
-        isNameEditable: true,
-        isTypeEditable: true,
-        type: '',
-        open: false,
-        id: this.props.closet.item_id,
-        typeName: this.props.closet.type_name,
-        name: this.props.closet.name,
+       stateToStay: {
+            isNameEditable: false,
+            isTypeEditable: false,
+            type: '',
+            open: false },
+        stateToSend: {
+            id: this.props.closet.item_id,
+            typeName: this.props.closet.type_name,
+            name: this.props.closet.name,
+        }
     }
 
     componentDidMount = () => {
         console.log('STATE IS------>', this.state);
     }
 
-    editName = () => {
+    edit = (name, value, edit) => {
         this.setState({
-            isNameEditable: true, 
+            [name]: value,
+            [edit]: true, 
         })
     }
 
-    handleNameChange = name => event => {
+    handleChange = (event, newState) => {
         this.setState({
-          [name]: event.target.value,
+          stateToSend:{...this.state.stateToSend, 
+            [newState]: event.target.value},
         });
     };
 
-    handleTypeChange = typeName => event => {
-        this.setState({
-            [typeName]: event.target.value,
-        })
+    sendNameChange = () => {
+        this.props.dispatch({type: `UPDATE_NAME`, payload: this.state.stateToSend});
+        this.setState({isNameEditable: false});    
     }
 
-    sendItemEditUpdate = (event) => {
-        event.preventDefault();
-        this.props.dispatch({ type: 'SEND_UPDATE', payload: this.state })
+    sendTypeNameChange = () => {
+        this.props.dispatch({type: `UPDATE_TYPE_NAME`, payload: this.state.typeName});
+        this.setState({isTypeEditable: true});
     }
     
     handleClose = () => {
@@ -100,8 +104,8 @@ class ItemCard extends Component {
         this.setState({ open: true });
     };
 
-    goToDelete = () => {
-        this.props.history.push(`/delete`);
+    deleteItem = () => {
+        this.props.dispatch({ type: 'DELETE_ITEM', payload: this.props.closet.item_id})
     }
 
     render(){
@@ -111,23 +115,33 @@ class ItemCard extends Component {
         return ( 
         <Card className={classes.card}>
         <CardContent> 
+        {JSON.stringify(this.state.stateToSend)}
             {this.state.isNameEditable ?
-                <><Typography variant="h5" component="h2" onClick={this.handleClose}>
-                {this.props.closet.name}
-                </Typography></>:
                 <><TextField
-                    id="filled-name"
-                    label="Name"
-                    className={classes.textField}
-                    value={this.state.name}
-                    onChange={this.handleNameChange('name')}
-                    margin="normal"
-                    variant="filled"
-                    style={{backgroundColor: 'white'}}
-                /></>
+                id="filled-name"
+                label="Name"
+                className={classes.textField}
+                value={this.state.stateToSend.name}
+                type="text"
+                name={this.props.closet.name}
+                onChange={(event)=>this.handleChange(event, 'name')}
+                margin="normal"
+                variant="filled"
+                style={{backgroundColor: 'white'}}
+                />
+                <button onClick={this.sendNameChange}>Save</button>
+                </> :
+                <><Typography 
+                variant="h5" 
+                component="h2" 
+                onClick={()=>this.edit('name', this.props.closet.name, 'isNameEditable')}
+                >
+                {this.props.closet.name}
+                </Typography>
+                </>
             }
-            {this.state.isTypeEditable ?
-                <><Typography component="p" onClick={this.editName}>
+            {/* {this.state.isTypeEditable ?
+                <><Typography component="p" onClick={this.handleClose}>
                     {bull}{this.props.closet.type_name}
                 </Typography></> :
                 <>
@@ -153,10 +167,10 @@ class ItemCard extends Component {
                         </FormControl>
                     </form>  
                 </>
-            }
+            } */}
         </CardContent>
         <CardActions>
-          <Button size="small" onClick={this.goToDelete}
+          <Button size="small" onClick={this.deleteItem}
           color="primary" className={classNames(classes.margin, classes.cssRoot)}>Delete</Button>
         </CardActions>
       </Card>
