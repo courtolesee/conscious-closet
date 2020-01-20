@@ -40,7 +40,8 @@ router.put('/name/:id', (req, res) => {
 
 
 router.delete('/delete/:id', (req, res) => {
-    let id = req.params.item_id
+    console.log('f;laksjd;flkajsd;lfkja;sdklfj;alskdj', req.params.id);
+    let id = [req.params.id]
     let queryText = `DELETE FROM closet WHERE item_id = $1;`;
     pool.query(queryText, id)
     .then(result => {

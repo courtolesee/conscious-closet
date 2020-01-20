@@ -106,7 +106,7 @@ class ItemCard extends Component {
 
     deleteItem = () => {
         this.props.dispatch({ type: 'DELETE_ITEM', payload: this.props.closet.item_id})
-    }
+    };
 
     render(){
         const { classes } = this.props;
@@ -115,7 +115,7 @@ class ItemCard extends Component {
         return ( 
         <Card className={classes.card}>
         <CardContent> 
-        {JSON.stringify(this.state.stateToSend)}
+        {/* {JSON.stringify(this.state.stateToSend)} */}
             {this.state.isNameEditable ?
                 <><TextField
                 id="filled-name"
