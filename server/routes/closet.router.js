@@ -3,18 +3,32 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    // console.log('req body is:', req.param);
     const userId =  req.user.user_id;
     const queryText = 
     `SELECT * FROM "closet" 
     JOIN "consumer" on "consumer"."user_id" = "closet"."user_id"
+    JOIN "clothing" on "clothing"."type_id" = "closet"."type_id"
     WHERE "closet"."user_id" = $1
-    ORDER BY "type_name";`;
+    ORDER BY "closet"."name"`;
     pool.query(queryText, [userId])
         .then( (result) => {
             res.send(result.rows);
-            console.log('RESULT ROWS OF CLOSET GET------------>', result.rows);
-            
+        })
+        .catch((error) => {
+            console.log('-------error----', error);
+            res.sendStatus(500)});
+});
+
+router.put('/afterDelete', (req, res) => {
+    const userId =  req.user.user_id;
+    const itemType = Object.keys(req.body)[0];
+    let result = doDeleteMath(itemType);    
+    const queryText = 
+    `UPDATE consumer SET actual_waste = actual_waste + $2
+    WHERE user_id = $1`;
+    pool.query(queryText, [userId, result])
+        .then( (result) => {
+            res.send(result.rows);
         })
         .catch((error) => {
             console.log('-------error----', error);
@@ -41,9 +55,9 @@ router.put('/type/:id', (req, res) => {
     // edit type for cardItems in closet
     console.log('req body data for type is ------------------------>', req.body.data);
     let id = req.body.data.id;
-    let type = req.body.data.typeName;
+    let typeId = req.body.data.typeName;
     const queryText = `UPDATE closet SET type_id = $2 WHERE item_id = $1;`;
-    const values = [id, type];
+    const values = [id, typeId];
     pool.query(queryText, values)
         .then( (result) => {
             res.send(result.rows);
@@ -56,39 +70,32 @@ router.put('/type/:id', (req, res) => {
 
 
 router.delete('/delete/:id', (req, res) => {
-
-    console.log('DELETE REQ PARAMS ARE---------->', req.params);
     let id = [req.params.id]
     let queryText = `DELETE FROM closet WHERE item_id = $1;`;
     pool.query(queryText, id)
     .then(result => {
-        res.sendStatus(200);
+        res.sendStatus(200);        
     }).catch(error=>{
         console.log('ERROR DELETING ITEM', error);
         res.sendStatus(400);
     })
 })
 
-// let doMath = (type) => {
-
-//     switch(){
-//         case 'tshirt':
-//             result = totalWaste + 0.28;
-//             break;
-//         case 'jeans':
-//             result = totalWaste + 1;
-//             break;
-//         case 'shoes':
-//             result = totalWaste + 2.5;
-//             break;
-//         case 'sweatshirt/sweater':
-//             result = totalWaste + 0.77;
-//             break;
-//         case 'winter jacket':
-//             result = totalWaste + 3;
-//             break;
-//     }
-
-// }
+let doDeleteMath = (itemType) => {    
+    switch(itemType){
+        case 'tshirt':
+            return 0.28;
+        case 'jeans':
+            return 1;
+        case 'shoes':
+            return 2.5;
+        case 'sweatshirt/sweater':
+            return 0.77;
+        case 'winter jacket':
+            return 3;
+        default:
+            return 0;
+    }
+}
 
 module.exports = router;

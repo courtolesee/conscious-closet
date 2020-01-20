@@ -51,17 +51,16 @@ class Closet extends Component {
         const { classes } = this.props;
         return (
             <div> 
-            {/* {JSON.stringify(this.props.closet)} */}
                 <h3>Hello, {this.props.user.username}</h3><LogOutButton className="log-in" />
                 <WaterProgressBar />
                 <WasteProgressBar />
                 <section className="closetSticky">
-                    <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToGraph}>
+                    {/* <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToGraph}>
                         Graph
                     </Button>
                     <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToAccountSettings}>
                     Account Settings
-                    </Button>
+                    </Button> */}
                 </section>
                 <section className="closet">
                     Closet 

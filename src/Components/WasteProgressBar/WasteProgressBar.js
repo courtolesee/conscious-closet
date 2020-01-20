@@ -49,13 +49,16 @@ class WasteProgressBar extends Component {
     handleTooltipOpen = () => {
         this.setState({ open: true });
     };
+    
     componentDidMount() {
-        this.timer = setInterval(this.progress, 500);
+        this.props.dispatch({ type: 'FETCH_USER' })
     }
 
-    componentWillUnmount() {
-        clearInterval(this.timer);
-    }
+    componentDidUpdate(prevProps){
+        if(this.props.actualWaste !== prevProps.actualWaste){
+          this.setState({completed: this.props.actualWaste});
+        }
+      }
 
     render(){
         const { classes } = this.props;

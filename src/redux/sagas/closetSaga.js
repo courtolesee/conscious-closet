@@ -4,7 +4,6 @@ import { put, takeLatest, takeEvery } from 'redux-saga/effects';
 function* fetchCloset() {
   try {
     const response = yield axios.get('api/closet');
-    console.log('FETH CLOSET RESPONSE IS', response);
     yield put({ type: 'SET_CLOSET', payload: response.data });
   } catch (error) {
     console.log('closet get request failed', error);
@@ -24,6 +23,8 @@ function* changeItemType(action) {
   try {
     const response = yield axios.put(`/api/closet/type/${action.payload}`, {data: action.payload});
     yield put({ type: `FETCH_CLOSET`, payload: response.data });
+    console.log('the changeItemType saga action.payload is', action.payload);
+    console.log('the changeItemType saga response.data is', response.data);
     } catch (error) {
     console.log('changing item name put failed', error);
   }
@@ -31,8 +32,10 @@ function* changeItemType(action) {
 
 function* deleteItem(action) {
   try {
-    yield axios.delete(`/api/closet/delete/${action.payload}`);
+    yield axios.delete(`/api/closet/delete/${action.payload.item_id}`);
+    const response = yield axios.put('api/closet/afterDelete', action.payload.type_name);
     yield put({type: 'FETCH_CLOSET'});
+    yield put({type: 'SET_CLOSET', payload: response.data});
   }
   catch (error){
     console.log(error);

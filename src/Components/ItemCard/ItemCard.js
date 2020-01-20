@@ -60,7 +60,8 @@ class ItemCard extends Component {
             isNameEditable: false,
             isTypeEditable: false,
             type: '',
-            open: false },
+            open: false 
+        },
         stateToSend: {
             id: this.props.closet.item_id,
             typeName: this.props.closet.type_name,
@@ -71,6 +72,7 @@ class ItemCard extends Component {
     componentDidMount = () => {
         console.log('STATE IS------>', this.state);
         console.log('*************this props.user is: ', this.props.user);
+        console.log('CLOSET ON PROPS:', this.props.closet);
         
     }
 
@@ -107,8 +109,8 @@ class ItemCard extends Component {
     };
 
     deleteItem = () => {
-        // doMath()
-        this.props.dispatch({ type: 'DELETE_ITEM', payload: this.props.closet.item_id})
+        console.log('in closet is', this.props.closet);
+        this.props.dispatch({ type: 'DELETE_ITEM', payload: this.props.closet})
     };
 
     render(){
@@ -118,13 +120,12 @@ class ItemCard extends Component {
         return ( 
         <Card className={classes.card}>
         <CardContent> 
-        {/* {JSON.stringify(this.state.stateToSend)} */}
             {this.state.isNameEditable ?
                 <><TextField
                 id="filled-name"
                 label="Name"
                 className={classes.textField}
-                value={this.state.stateToSend.name}
+                value={this.props.closet.name}
                 type="text"
                 name={this.props.closet.name}
                 onChange={(event)=>this.handleChange(event, 'name')}
@@ -143,7 +144,7 @@ class ItemCard extends Component {
                 </Typography>
                 </>
             }
-            {this.state.isTypeEditable ?
+            {/* {this.state.isTypeEditable ?
                 <>
                 <form variant="h5" component="h2" autoComplete="off">
                     <Button className={classes.button} onClick={this.handleOpen}>
@@ -154,7 +155,7 @@ class ItemCard extends Component {
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            value={this.state.stateToSend.typeName}
+                            value={this.props.closet.type}
                             onChange={(event)=>this.handleChange(event, 'typeName')}
                             style={{backgroundColor: 'white'}}
                         >
@@ -167,12 +168,11 @@ class ItemCard extends Component {
                     </FormControl>
                 </form>  
                 <button onClick={this.sendTypeNameChange}>Save</button>
-            </> :
+            </> : */}
                 <><Typography component="p" 
                 onClick={()=>this.edit('typeName', this.props.closet.type_name, 'isTypeEditable')}>
-                    {bull}{this.props.closet.type_name}
+                    {bull}{this.props.closet.type}
                 </Typography></>
-            }
         </CardContent>
         <CardActions>
           <Button size="small" onClick={this.deleteItem}
@@ -188,7 +188,7 @@ ItemCard.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    user: state.user
+    user: state.user 
   });
 
 export default withRouter(connect(mapStateToProps)(withStyles(styles)(ItemCard)));
