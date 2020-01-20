@@ -32,7 +32,7 @@ function* changeItemType(action) {
 function* deleteItem(action) {
   try {
     yield axios.delete(`/api/closet/delete/${action.payload}`);
-    yield put({type: 'FETCH_CLOSET'})
+    yield put({type: 'FETCH_CLOSET'});
   }
   catch (error){
     console.log(error);

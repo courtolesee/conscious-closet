@@ -107,6 +107,7 @@ class ItemCard extends Component {
     };
 
     deleteItem = () => {
+        // doMath()
         this.props.dispatch({ type: 'DELETE_ITEM', payload: this.props.closet.item_id})
     };
 

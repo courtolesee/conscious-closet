@@ -6,13 +6,15 @@ router.get('/', (req, res) => {
     // console.log('req body is:', req.param);
     const userId =  req.user.user_id;
     const queryText = 
-    `SELECT "item_id", "type_id", "type_name", "name" 
-    FROM "closet" 
-    WHERE "user_id" = $1
+    `SELECT * FROM "closet" 
+    JOIN "consumer" on "consumer"."user_id" = "closet"."user_id"
+    WHERE "closet"."user_id" = $1
     ORDER BY "type_name";`;
     pool.query(queryText, [userId])
         .then( (result) => {
             res.send(result.rows);
+            console.log('RESULT ROWS OF CLOSET GET------------>', result.rows);
+            
         })
         .catch((error) => {
             console.log('-------error----', error);
@@ -54,7 +56,8 @@ router.put('/type/:id', (req, res) => {
 
 
 router.delete('/delete/:id', (req, res) => {
-    console.log('DETEL REQ PARAMS ARE---------->', req.params);
+
+    console.log('DELETE REQ PARAMS ARE---------->', req.params);
     let id = [req.params.id]
     let queryText = `DELETE FROM closet WHERE item_id = $1;`;
     pool.query(queryText, id)
