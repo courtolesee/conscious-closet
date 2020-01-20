@@ -35,16 +35,12 @@ class AddNew extends Component {
     };
 
     handleSubmit = () => {
-        this.props.dispatch({type: `ADD_ITEM`, payload: this.state})
+        this.props.dispatch({type: `ADD_ITEM`, payload: this.state});
+        this.props.history.push(`/`);
+
     }
 
     goToCloset = () => {
-        this.props.history.push(`/`);
-    }
-
-    goToClosetSave = () => {
-        // will new to DB
-        // some alert that it worked
         this.props.history.push(`/`);
     }
 
@@ -65,23 +61,30 @@ class AddNew extends Component {
                 value={this.state.name}
                 onChange={this.handleNameChange}
             /><br/>
-            {/* <FormControl >
-                    <InputLabel id="demo-simple-select-label">Type</InputLabel>
-                <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={this.state.type}
-                onChange={this.handleChange('type')}
-                style={{backgroundColor: 'white'}}
-                >
-                <MenuItem value={'tshirt'}>t-shirt</MenuItem>
-                <MenuItem value={'jeans'}>jeans</MenuItem>
-                <MenuItem value={'shoes'}>shoes</MenuItem>
-                <MenuItem value={'sweatshirt/sweater'}>sweatshirt/sweater</MenuItem>
-                <MenuItem value={'winter jacket'}>winter jacket</MenuItem>
-                </Select>
-            </FormControl><br/> */}
-            <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)}>
+            {/* <form variant="h5" component="h2" autoComplete="off">
+                <Button className={classes.button} onClick={this.handleOpen}>
+                </Button>
+                <InputLabel htmlFor="demo-simple-select-label" style={{color: 'white'}}
+                    >{this.state.typeName}</InputLabel>
+                <FormControl className={classes.formControl}>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={this.state.stateToSend.typeName}
+                        onChange={(event)=>this.handleChange(event, 'typeName')}
+                        style={{backgroundColor: 'white'}}
+                    >
+                        <MenuItem value={1}>t-shirt</MenuItem>
+                        <MenuItem value={2}>jeans</MenuItem>
+                        <MenuItem value={3}>shoes</MenuItem>
+                        <MenuItem value={4}>sweatshirt/sweater</MenuItem>
+                        <MenuItem value={5}>winter jacket</MenuItem>
+                    </Select>
+                </FormControl>
+            </form>  */}
+            <Button size="small" variant="contained" color="primary" 
+            className={classNames(classes.margin, classes.cssRoot)}
+            onClick={this.handleSubmit}>
                 Add
             </Button>
         </div> 

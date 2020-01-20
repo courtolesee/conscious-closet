@@ -13,9 +13,16 @@ function* fetchCloset() {
 
 function* changeItemName(action) {
   try {
-    console.log('this is action payload--------->', action.payload);
-    
     const response = yield axios.put(`/api/closet/name/${action.payload}`, {data: action.payload});
+    yield put({ type: `FETCH_CLOSET`, payload: response.data });
+    } catch (error) {
+    console.log('changing item name put failed', error);
+  }
+}
+
+function* changeItemType(action) {
+  try {
+    const response = yield axios.put(`/api/closet/type/${action.payload}`, {data: action.payload});
     yield put({ type: `FETCH_CLOSET`, payload: response.data });
     } catch (error) {
     console.log('changing item name put failed', error);
@@ -35,6 +42,7 @@ function* deleteItem(action) {
 function* closetSaga() {
   yield takeLatest('FETCH_CLOSET', fetchCloset);
   yield takeLatest('UPDATE_NAME', changeItemName);
+  yield takeLatest('UPDATE_TYPE_NAME', changeItemType)
   yield takeEvery('DELETE_ITEM', deleteItem)
 }
 

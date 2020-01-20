@@ -70,6 +70,8 @@ class ItemCard extends Component {
 
     componentDidMount = () => {
         console.log('STATE IS------>', this.state);
+        console.log('*************this props.user is: ', this.props.user);
+        
     }
 
     edit = (name, value, edit) => {
@@ -92,8 +94,8 @@ class ItemCard extends Component {
     }
 
     sendTypeNameChange = () => {
-        this.props.dispatch({type: `UPDATE_TYPE_NAME`, payload: this.state.typeName});
-        this.setState({isTypeEditable: true});
+        this.props.dispatch({type: `UPDATE_TYPE_NAME`, payload: this.state.stateToSend});
+        this.setState({isTypeEditable: false});    
     }
     
     handleClose = () => {
@@ -140,34 +142,36 @@ class ItemCard extends Component {
                 </Typography>
                 </>
             }
-            {/* {this.state.isTypeEditable ?
-                <><Typography component="p" onClick={this.handleClose}>
-                    {bull}{this.props.closet.type_name}
-                </Typography></> :
+            {this.state.isTypeEditable ?
                 <>
-                    <form variant="h5" component="h2" autoComplete="off">
-                        <Button className={classes.button} onClick={this.handleOpen}>
-                        </Button>
-                        <InputLabel htmlFor="demo-simple-select-label" style={{color: 'white'}}
-                            >{this.state.typeName}</InputLabel>
-                        <FormControl className={classes.formControl}>
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={this.typeName}
-                                onChange={this.handleTypeChange}
-                                style={{backgroundColor: 'white'}}
-                            >
-                                <MenuItem value={1}>t-shirt</MenuItem>
-                                <MenuItem value={2}>jeans</MenuItem>
-                                <MenuItem value={3}>shoes</MenuItem>
-                                <MenuItem value={4}>sweatshirt/sweater</MenuItem>
-                                <MenuItem value={5}>winter jacket</MenuItem>
-                            </Select>
-                        </FormControl>
-                    </form>  
-                </>
-            } */}
+                <form variant="h5" component="h2" autoComplete="off">
+                    <Button className={classes.button} onClick={this.handleOpen}>
+                    </Button>
+                    <InputLabel htmlFor="demo-simple-select-label" style={{color: 'white'}}
+                        >{this.state.typeName}</InputLabel>
+                    <FormControl className={classes.formControl}>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={this.state.stateToSend.typeName}
+                            onChange={(event)=>this.handleChange(event, 'typeName')}
+                            style={{backgroundColor: 'white'}}
+                        >
+                            <MenuItem value={1}>t-shirt</MenuItem>
+                            <MenuItem value={2}>jeans</MenuItem>
+                            <MenuItem value={3}>shoes</MenuItem>
+                            <MenuItem value={4}>sweatshirt/sweater</MenuItem>
+                            <MenuItem value={5}>winter jacket</MenuItem>
+                        </Select>
+                    </FormControl>
+                </form>  
+                <button onClick={this.sendTypeNameChange}>Save</button>
+            </> :
+                <><Typography component="p" 
+                onClick={()=>this.edit('typeName', this.props.closet.type_name, 'isTypeEditable')}>
+                    {bull}{this.props.closet.type_name}
+                </Typography></>
+            }
         </CardContent>
         <CardActions>
           <Button size="small" onClick={this.deleteItem}
@@ -182,4 +186,8 @@ ItemCard.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withRouter(connect()(withStyles(styles)(ItemCard)));
+const mapStateToProps = state => ({
+    user: state.user
+  });
+
+export default withRouter(connect(mapStateToProps)(withStyles(styles)(ItemCard)));
