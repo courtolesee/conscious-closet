@@ -38,7 +38,15 @@ const styles = theme => ({
 class Closet extends Component {
 
     state = {
-        dialogOpen: false,
+        stateToStay: {
+        dialogOpen: false
+        },
+        stateToSend: {
+            id: this.props.closet.item_id,
+            typeId: this.props.closet.type_id,
+            typeName: this.props.closet.type_name,
+            name: this.props.closet.name,
+        }
     }
 
     handleDialogOpen = () => {
@@ -49,22 +57,20 @@ class Closet extends Component {
         this.setState({ dialogOpen: false });
     };
 
+    handleChange = (event, newState) => {
+        this.setState({
+          stateToSend:{...this.state.stateToSend, 
+            [newState]: event.target.value},
+        });
+    };
 
     componentDidMount(){        
         this.props.dispatch({type: 'FETCH_CLOSET'});
     }
 
-    // routes
-    goToGraph = () => {
-        this.props.history.push(`/graph`);
-    }
-
-    goToAccountSettings = () => {
-        this.props.history.push(`/account`)
-    }
-
     addNew = () => {
-        
+        this.props.dispatch({type: `ADD_ITEM`, payload: this.state.stateToSend});
+        this.setState({dialogOpen: false});    
     }
 
     render(){
@@ -95,6 +101,7 @@ class Closet extends Component {
                         <DialogTitle id="form-dialog-title">Add New Item</DialogTitle>
                         <DialogContent>
                             <TextField
+                                onChange={(event)=>this.handleChange(event, 'name')}
                                 autoFocus
                                 margin="dense"
                                 id="name"
@@ -109,8 +116,12 @@ class Closet extends Component {
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 label="Item Type"
-                                value={this.props.closet.type}
+                                value={this.state.stateToSend.typeName}
                                 onChange={(event)=>this.handleChange(event, 'typeName')}
+                                inputProps={{
+                                    name: 'nameType',
+                                    id: 'typeId'
+                                }}
                                 style={{backgroundColor: 'white'}}
                             >
                                 <MenuItem value={1}>t-shirt</MenuItem>
