@@ -68,9 +68,6 @@ class WaterProgressBar extends Component {
         clearInterval(this.timer);
     }
 
-    
-
-
     render(props){
         const { classes } = this.props;
         

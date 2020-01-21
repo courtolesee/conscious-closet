@@ -18,6 +18,7 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import DialogContentText from '@material-ui/core/DialogContentText';
+import classNames from 'classnames';
 
 const styles = theme => ({
     fab: {
@@ -82,22 +83,21 @@ class Closet extends Component {
         const { classes } = this.props;
         return (
             <div> 
-                <h3>Hello, {this.props.user.username}</h3><LogOutButton className="log-in" />
+                <section>
+                <h2>Hello, {this.props.user.username}</h2>
+                <LogOutButton className="log-in" />
+                <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToAccountSettings}>
+                    Account Settings
+                </Button>
                 <WaterProgressBar />
                 <WasteProgressBar />
-                <section className="closetSticky">
-                    {/* <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToGraph}>
-                        Graph
-                    </Button>
-                    <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToAccountSettings}>
-                    Account Settings
-                    </Button> */}
-                </section>
-                <section className="closet">
-                    Closet 
-                    <Fab color="primary" aria-label="Add" onClick={this.handleDialogOpen} style={{backgroundColor:"#03A696", marginLeft:"300px"}} size="small">
+                <h2>Closet
+                <Fab color="primary" aria-label="Add" onClick={this.handleDialogOpen} style={{backgroundColor:"#03A696", marginLeft:"300px"}} size="small">
                         <AddIcon />
-                    </Fab>
+                </Fab></h2>
+                </section>
+                <section className="closet"> 
+
                     <Dialog
                         open={this.state.dialogOpen}
                         onClose={this.handleDialogClose}
