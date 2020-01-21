@@ -36,12 +36,6 @@ const styles = theme => ({
 
 class WaterProgressBar extends Component {
 
-    componentDidMount = () => {
-        console.log('user object:', this.props.userInfo);
-        console.log('user is:', this.props.username);  
-        console.log('water goal is', this.props.waterGoal);
-        console.log('actual goal is', this.props.actualWater);
-    }
 
     formatNum = (num) => {
         return num.toLocaleString();
@@ -61,12 +55,14 @@ class WaterProgressBar extends Component {
         this.setState({ open: true });
     };
     componentDidMount() {
-        this.timer = setInterval(this.progress, 500);
+        this.props.dispatch({ type: 'FETCH_USER' })
     }
 
-    componentWillUnmount() {
-        clearInterval(this.timer);
-    }
+    componentDidUpdate(prevProps){
+        if(this.props.actualWater !== prevProps.actualWater){
+          this.setState({completed: this.props.actualWater});
+        }
+      }
 
     render(props){
         const { classes } = this.props;
