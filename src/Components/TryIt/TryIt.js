@@ -59,9 +59,6 @@ class TryIt extends Component {
         this.props.history.push(`/signup`);
     }
 
-    goToAddNew = () => {
-        this.props.history.push(`/add`)
-    }
 
     // FUNCTIONS 
     handleTooltipClose = () => {
