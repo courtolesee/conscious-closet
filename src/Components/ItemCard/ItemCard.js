@@ -63,6 +63,7 @@ class ItemCard extends Component {
             open: false 
         },
         stateToSend: {
+            typeId: this.props.closet.type_id,
             id: this.props.closet.item_id,
             typeName: this.props.closet.type_name,
             name: this.props.closet.name,
@@ -71,6 +72,7 @@ class ItemCard extends Component {
 
     componentDidMount = () => {  
     }
+    
 
     edit = (name, value, edit) => {
         this.setState({

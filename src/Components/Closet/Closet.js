@@ -71,8 +71,11 @@ class Closet extends Component {
 
     addNew = () => {
         this.props.dispatch({type: `ADD_NEW`, payload: this.state.stateToSend});
-        console.log('ADDING NEW PAYLOAD IS', this.state.stateToSend);
-        this.setState({dialogOpen: false});    
+        this.setState({dialogOpen: false}); 
+        this.props.dispatch({type: 'FETCH_CLOSET'}); 
+        this.setState({
+            stateToSend: {name: ''} 
+        })
     }
 
     render(){

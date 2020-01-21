@@ -19,21 +19,36 @@ router.get('/', (req, res) => {
             res.sendStatus(500)});
 });
 
-router.post('/new', (req, res) => {
-    console.log('NEWWWWWWWW--------------------------->', req.body);
-    
+router.post('/new', (req, res) => {    
     const userId = req.user.user_id;
     const itemType = req.body.typeId;
     const name = req.body.name;
     const queryText =
     `INSERT INTO "closet" ("user_id", "type_id", "name") VALUES ($1, $2, $3);`;
     pool.query(queryText, [userId, itemType, name ])
+        .then( (result) => {
+            res.send(result.rows);
+        })
+        .catch((error) => {
+            console.log('------- new add error----', error);
+            res.sendStatus(500)});
 })
 
-// router.put('/afterAdd', (req, res) => {
-//     const userId = req.user.user_id;
-//     const itemType = 
-// })
+router.put('/afterAdd', (req, res) => {
+    const userId =  req.user.user_id;
+    const typeId = req.body.data;
+    let result = doAddMath(typeId);  
+    const queryText = 
+    `UPDATE consumer SET actual_water = actual_water + $2
+    WHERE user_id = $1`;
+    pool.query(queryText, [userId, result])
+        .then( (result) => {
+            res.send(result.rows);
+        })
+        .catch((error) => {
+            console.log('------- after new add error----', error);
+            res.sendStatus(500)});
+});
 
 
 router.delete('/delete/:id', (req, res) => {
@@ -50,8 +65,8 @@ router.delete('/delete/:id', (req, res) => {
 
 router.put('/afterDelete', (req, res) => {
     const userId =  req.user.user_id;
-    const itemType = Object.keys(req.body)[0];
-    let result = doDeleteMath(itemType);    
+    const typeId = Object.keys(req.body)[0];
+    let result = doDeleteMath(typeId);   
     const queryText = 
     `UPDATE consumer SET actual_waste = actual_waste + $2
     WHERE user_id = $1`;
@@ -60,7 +75,7 @@ router.put('/afterDelete', (req, res) => {
             res.send(result.rows);
         })
         .catch((error) => {
-            console.log('-------error----', error);
+            console.log('------- after delete error----', error);
             res.sendStatus(500)});
 });
 
@@ -96,17 +111,17 @@ router.put('/type/:id', (req, res) => {
         });
 });
 
-let doDeleteMath = (itemType) => {    
-    switch(itemType){
-        case 'tshirt':
+let doDeleteMath = (typeId) => {    
+    switch(typeId){
+        case '1':
             return 0.28;
-        case 'jeans':
+        case '2':
             return 1;
-        case 'shoes':
+        case '3':
             return 2.5;
-        case 'sweatshirt/sweater':
+        case '4':
             return 0.77;
-        case 'winter jacket':
+        case '5':
             return 3;
         default:
             return 0;
@@ -115,15 +130,15 @@ let doDeleteMath = (itemType) => {
 
 let doAddMath = (itemType) => {
     switch(itemType){
-        case 'tshirt':
+        case 1:
             return 713;
-        case 'jeans':
+        case 2:
             return 2108;
-        case 'shoes':
+        case 3:
             return 3626;
-        case 'sweatshirt/sweater':
+        case 4:
             return 1960;
-        case 'winter jacket':
+        case 5:
             return 7639;
         default:
             return 0;        
