@@ -69,11 +69,7 @@ class ItemCard extends Component {
         }
     }
 
-    componentDidMount = () => {
-        console.log('STATE IS------>', this.state);
-        console.log('*************this props.user is: ', this.props.user);
-        console.log('CLOSET ON PROPS:', this.props.closet);
-        
+    componentDidMount = () => {  
     }
 
     edit = (name, value, edit) => {

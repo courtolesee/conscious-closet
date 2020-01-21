@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
             res.sendStatus(500)});
 });
 
-router.put('/addNew', (req, res) => {
+router.put('/new', (req, res) => {
     const userId = req.user.user_id;
     const itemType = Object.keys(req.body)[0];
     let result = doAddMath(itemType);

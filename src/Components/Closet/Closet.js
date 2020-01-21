@@ -39,13 +39,13 @@ class Closet extends Component {
 
     state = {
         stateToStay: {
-        dialogOpen: false
+            dialogOpen: false,
         },
         stateToSend: {
             id: this.props.closet.item_id,
-            typeId: this.props.closet.type_id,
-            typeName: this.props.closet.type_name,
-            name: this.props.closet.name,
+            typeId: '',
+            typeName: '',
+            name: '',
         }
     }
 
@@ -64,12 +64,15 @@ class Closet extends Component {
         });
     };
 
-    componentDidMount(){        
+    componentDidMount(){    
+        console.log('closet component-------CLOSET PROPS ARE',this.props.closet);  
         this.props.dispatch({type: 'FETCH_CLOSET'});
     }
 
     addNew = () => {
         this.props.dispatch({type: `ADD_ITEM`, payload: this.state.stateToSend});
+        console.log('ADDING NEW PAYLOAD IS', this.state.stateToSend);
+        
         this.setState({dialogOpen: false});    
     }
 
@@ -101,7 +104,12 @@ class Closet extends Component {
                         <DialogTitle id="form-dialog-title">Add New Item</DialogTitle>
                         <DialogContent>
                             <TextField
+                                value={this.state.stateToSend.name}
                                 onChange={(event)=>this.handleChange(event, 'name')}
+                                inputProps={{
+                                    name: 'name',
+                                    id: 'typeId'
+                                }}
                                 autoFocus
                                 margin="dense"
                                 id="name"
@@ -113,13 +121,12 @@ class Closet extends Component {
                                 Item Type
                             </DialogContentText>
                             <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
+                                labelId="demo-controlled-open-select"
                                 label="Item Type"
-                                value={this.state.stateToSend.typeName}
-                                onChange={(event)=>this.handleChange(event, 'typeName')}
+                                value={this.state.stateToSend.typeId}
+                                onChange={(event)=>this.handleChange(event, 'typeId')}
                                 inputProps={{
-                                    name: 'nameType',
+                                    name: 'name',
                                     id: 'typeId'
                                 }}
                                 style={{backgroundColor: 'white'}}
@@ -136,7 +143,7 @@ class Closet extends Component {
                             <Button onClick={this.handleClose} color="primary">
                             Cancel
                             </Button>
-                            <Button onClick={this.handleClose} color="primary">
+                            <Button onClick={this.addNew} color="primary">
                             Add
                             </Button>
                         </DialogActions>
