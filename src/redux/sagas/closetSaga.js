@@ -12,7 +12,7 @@ function* fetchCloset() {
 
 function* addNewItem(action) {
   try{
-    const response = yield axios.put(`/api/closet/new`);
+    const response = yield axios.post(`/api/closet/new`, action.payload);
     yield put({ type: `FETCH_CLOSET`, payload: response.data });
   }catch (error){
     console.log('adding new item failed', error);

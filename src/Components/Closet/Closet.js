@@ -57,7 +57,7 @@ class Closet extends Component {
         this.setState({ dialogOpen: false });
     };
 
-    handleChange = (event, newState) => {
+    handleChange = (event, newState) => {        
         this.setState({
           stateToSend:{...this.state.stateToSend, 
             [newState]: event.target.value},
@@ -70,9 +70,8 @@ class Closet extends Component {
     }
 
     addNew = () => {
-        this.props.dispatch({type: `ADD_ITEM`, payload: this.state.stateToSend});
+        this.props.dispatch({type: `ADD_NEW`, payload: this.state.stateToSend});
         console.log('ADDING NEW PAYLOAD IS', this.state.stateToSend);
-        
         this.setState({dialogOpen: false});    
     }
 
@@ -124,7 +123,7 @@ class Closet extends Component {
                                 labelId="demo-controlled-open-select"
                                 label="Item Type"
                                 value={this.state.stateToSend.typeId}
-                                onChange={(event)=>this.handleChange(event, 'typeId')}
+                                onChange={(event)=>this.handleChange(event, 'typeId', 'typeName')}
                                 inputProps={{
                                     name: 'name',
                                     id: 'typeId'
@@ -132,12 +131,11 @@ class Closet extends Component {
                                 style={{backgroundColor: 'white'}}
                             >
                                 <MenuItem value={1}>t-shirt</MenuItem>
-                                <MenuItem value={2}>jeans</MenuItem>
-                                <MenuItem value={3}>shoes</MenuItem>
-                                <MenuItem value={4}>sweatshirt/sweater</MenuItem>
+                                <MenuItem value={2} >jeans</MenuItem>
+                                <MenuItem value={3} >shoes</MenuItem>
+                                <MenuItem value={4} >sweatshirt/sweater</MenuItem>
                                 <MenuItem value={5}>winter jacket</MenuItem>
                             </Select>
-
                         </DialogContent>
                         <DialogActions>
                             <Button onClick={this.handleClose} color="primary">

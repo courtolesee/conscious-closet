@@ -19,14 +19,21 @@ router.get('/', (req, res) => {
             res.sendStatus(500)});
 });
 
-router.put('/new', (req, res) => {
+router.post('/new', (req, res) => {
+    console.log('NEWWWWWWWW--------------------------->', req.body);
+    
     const userId = req.user.user_id;
-    const itemType = Object.keys(req.body)[0];
-    let result = doAddMath(itemType);
+    const itemType = req.body.typeId;
+    const name = req.body.name;
     const queryText =
     `INSERT INTO "closet" ("user_id", "type_id", "name") VALUES ($1, $2, $3);`;
-    pool.query(queryText, [userId, itemType ])
+    pool.query(queryText, [userId, itemType, name ])
 })
+
+// router.put('/afterAdd', (req, res) => {
+//     const userId = req.user.user_id;
+//     const itemType = 
+// })
 
 
 router.delete('/delete/:id', (req, res) => {
@@ -75,7 +82,6 @@ router.put('/name/:id', (req, res) => {
 
 router.put('/type/:id', (req, res) => {
     // edit type for cardItems in closet
-    console.log('req body data for type is ------------------------>', req.body.data);
     let id = req.body.data.id;
     let typeId = req.body.data.typeName;
     const queryText = `UPDATE closet SET type_id = $2 WHERE item_id = $1;`;
