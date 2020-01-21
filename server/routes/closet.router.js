@@ -19,6 +19,28 @@ router.get('/', (req, res) => {
             res.sendStatus(500)});
 });
 
+router.put('/addNew', (req, res) => {
+    const userId = req.user.user_id;
+    const itemType = Object.keys(req.body)[0];
+    let result = doAddMath(itemType);
+    const queryText =
+    `INSERT INTO "closet" ("user_id", "type_id", "name") VALUES ($1, $2, $3);`;
+    pool.query(queryText, [userId, itemType ])
+})
+
+
+router.delete('/delete/:id', (req, res) => {
+    let id = [req.params.id]
+    let queryText = `DELETE FROM closet WHERE item_id = $1;`;
+    pool.query(queryText, id)
+    .then(result => {
+        res.sendStatus(200);        
+    }).catch(error=>{
+        console.log('ERROR DELETING ITEM', error);
+        res.sendStatus(400);
+    })
+})
+
 router.put('/afterDelete', (req, res) => {
     const userId =  req.user.user_id;
     const itemType = Object.keys(req.body)[0];
@@ -68,19 +90,6 @@ router.put('/type/:id', (req, res) => {
         });
 });
 
-
-router.delete('/delete/:id', (req, res) => {
-    let id = [req.params.id]
-    let queryText = `DELETE FROM closet WHERE item_id = $1;`;
-    pool.query(queryText, id)
-    .then(result => {
-        res.sendStatus(200);        
-    }).catch(error=>{
-        console.log('ERROR DELETING ITEM', error);
-        res.sendStatus(400);
-    })
-})
-
 let doDeleteMath = (itemType) => {    
     switch(itemType){
         case 'tshirt':
@@ -95,6 +104,23 @@ let doDeleteMath = (itemType) => {
             return 3;
         default:
             return 0;
+    }
+}
+
+let doAddMath = (itemType) => {
+    switch(itemType){
+        case 'tshirt':
+            return 713;
+        case 'jeans':
+            return 2108;
+        case 'shoes':
+            return 3626;
+        case 'sweatshirt/sweater':
+            return 1960;
+        case 'winter jacket':
+            return 7639;
+        default:
+            return 0;        
     }
 }
 
