@@ -65,8 +65,9 @@ router.delete('/delete/:id', (req, res) => {
 
 router.put('/afterDelete', (req, res) => {
     const userId =  req.user.user_id;
-    const typeId = Object.keys(req.body)[0];
-    let result = doDeleteMath(typeId);   
+    const typeId = doDeleteMath(req.body.data.type_id);
+    const deleteType = doDeleteTypeMath(req.body.data.deleteType);
+    const result = typeId * deleteType
     const queryText = 
     `UPDATE consumer SET actual_waste = actual_waste + $2
     WHERE user_id = $1`;
@@ -113,18 +114,29 @@ router.put('/type/:id', (req, res) => {
 
 let doDeleteMath = (typeId) => {    
     switch(typeId){
-        case '1':
+        case 1:
             return 0.28;
-        case '2':
+        case 2:
             return 1;
-        case '3':
+        case 3:
             return 2.5;
-        case '4':
+        case 4:
             return 0.77;
-        case '5':
+        case 5:
             return 3;
         default:
             return 0;
+    }
+}
+
+let doDeleteTypeMath = (deleteType) => {
+    switch (deleteType){
+        case 2:
+            return 0.84;
+        case 3:
+            return 0;
+        default:
+            return 1;
     }
 }
 

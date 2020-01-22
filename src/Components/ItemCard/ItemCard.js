@@ -74,6 +74,7 @@ class ItemCard extends Component {
             id: this.props.closet.item_id,
             typeName: this.props.closet.type_name,
             name: this.props.closet.name,
+            deleteType: 0
         }
     }
 
@@ -121,8 +122,12 @@ class ItemCard extends Component {
     };
 
     deleteItem = () => {
-        console.log('in closet is', this.props.closet);
-        this.props.dispatch({ type: 'DELETE_ITEM', payload: this.props.closet})
+        console.log('in closet the payload is:', this.props.closet);
+        console.log('delete type is:', this.state.stateToSend.deleteType);
+          this.props.dispatch({ 
+          type: 'DELETE_ITEM', 
+          payload: {closet: this.props.closet, deleteType: this.state.stateToSend.deleteType}})
+        this.setState({ dialogOpen: false });
     };
 
     render(){
@@ -181,12 +186,11 @@ class ItemCard extends Component {
                             </DialogContentText>
                             <Select
                                 labelId="demo-controlled-open-select"
-                                label="Item Type"
-                                value={this.state.stateToSend.typeId}
-                                onChange={(event)=>this.handleChange(event, 'typeId', 'typeName')}
+                                // label="Delete Type"
+                                value={this.state.stateToSend.deleteType}
+                                onChange={(event)=>this.handleChange(event, 'deleteType')}
                                 inputProps={{
-                                    name: 'name',
-                                    id: 'typeId'
+                                    deleteType: 'deleteType',
                                 }}
                                 style={{backgroundColor: 'white'}}
                             >
@@ -197,10 +201,10 @@ class ItemCard extends Component {
                         </DialogContent>
                         <DialogActions>
                             <Button onClick={this.handleClose} color="primary">
-                            Confirm Delete
+                            Cancel
                             </Button>
-                            <Button onClick={this.addNew} color="primary">
-                            Add
+                            <Button onClick={this.deleteItem} color="primary">
+                            Confirm Delete
                             </Button>
                         </DialogActions>
                     </Dialog>
