@@ -2,7 +2,7 @@
 Courtney Olesee's solo project for Prime Digital Academy
 
 Duration: 2 week sprint
-***currently in progress***
+- ***currently in progress***
 
 
 Find the original scope document here: https://docs.google.com/document/d/1l75AQQft0HwBX75utSvl18dCYyIKk9zYWM1o8vwx2XI/edit?usp=sharing
@@ -17,6 +17,9 @@ Come back soon to see the fully functional site, soon to be deployed to Heroku.
 _Coming Soon_
 
 ## Installation 
+Create a database called **conscious_closet**, and run the create table queries in the database.sql file. 
+
+
 In your command line, run: 
 > npm install
 
