@@ -16,6 +16,12 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContentText from '@material-ui/core/DialogContentText';
+
 
 const styles = theme => ({
     card: {
@@ -60,7 +66,8 @@ class ItemCard extends Component {
             isNameEditable: false,
             isTypeEditable: false,
             type: '',
-            open: false 
+            open: false,
+            dialogOpen: false,
         },
         stateToSend: {
             typeId: this.props.closet.type_id,
@@ -73,6 +80,13 @@ class ItemCard extends Component {
     componentDidMount = () => {  
     }
     
+    handleDialogOpen = () => {
+      this.setState({ dialogOpen: true });
+    };
+    
+    handleDialogClose = () => {
+        this.setState({ dialogOpen: false });
+    };
 
     edit = (name, value, edit) => {
         this.setState({
@@ -148,8 +162,50 @@ class ItemCard extends Component {
                 </Typography></>
         </CardContent>
         <CardActions>
-          <Button size="small" onClick={this.deleteItem}
-          color="primary" className={classNames(classes.margin, classes.cssRoot)}>Delete</Button>
+
+          <Button 
+          size="small" 
+          // onClick={this.deleteItem} 
+          onClick={this.handleDialogOpen}
+          color="primary" className={classNames(classes.margin, classes.cssRoot)}
+          >Delete</Button>
+                              <Dialog
+                        open={this.state.dialogOpen}
+                        onClose={this.handleDialogClose}
+                        aria-labelledby="form-dialog-title"
+                        >
+                        <DialogTitle id="form-dialog-title">Delete Item</DialogTitle>
+                        <DialogContent>
+                            <DialogContentText>
+                                How are you discarding this item?
+                            </DialogContentText>
+                            <Select
+                                labelId="demo-controlled-open-select"
+                                label="Item Type"
+                                value={this.state.stateToSend.typeId}
+                                onChange={(event)=>this.handleChange(event, 'typeId', 'typeName')}
+                                inputProps={{
+                                    name: 'name',
+                                    id: 'typeId'
+                                }}
+                                style={{backgroundColor: 'white'}}
+                            >
+                                <MenuItem value={1}>Throw Away</MenuItem>
+                                <MenuItem value={2} >Donate</MenuItem>
+                                <MenuItem value={3} >Reuse</MenuItem>
+                            </Select>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={this.handleClose} color="primary">
+                            Confirm Delete
+                            </Button>
+                            <Button onClick={this.addNew} color="primary">
+                            Add
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+
+
         </CardActions>
       </Card>
         )
