@@ -67,7 +67,10 @@ class WasteProgressBar extends Component {
         let MAX = this.state.goal;
         const bar = this.state.completed;
         const normalise = value => {
-            const normalizedNum = (Number(bar) - MIN) * 100 / (Number(MAX) - MIN)
+            let normalizedNum = (Number(bar) - MIN) * 100 / (Number(MAX) - MIN)
+            if (normalizedNum > 100){
+              normalizedNum = 100;
+            }
             return normalizedNum;
         };
 
@@ -96,7 +99,7 @@ class WasteProgressBar extends Component {
                     </div>
                     </ClickAwayListener>
                 </section>
-            </div>
+                </div>
         )
     }
 }
