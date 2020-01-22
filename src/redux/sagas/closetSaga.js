@@ -15,7 +15,8 @@ function* addNewItem(action) {
     console.log('this is the action payload of the add new item saga', action.payload);
     
     yield axios.post(`/api/closet/new`, action.payload);
-    const response = yield axios.put(`/api/closet/afterAdd`, {data: action.payload.typeId});
+    // const response = 
+    yield axios.put(`/api/closet/afterAdd`, {data: action.payload.typeId});
     yield put({ type: 'FETCH_CLOSET'});
     yield put ({type: 'FETCH_USER'});
   }
@@ -47,7 +48,8 @@ function* changeItemType(action) {
 function* deleteItem(action) {
   try {
     yield axios.delete(`/api/closet/delete/${action.payload.item_id}`);
-    const response = yield axios.put('api/closet/afterDelete', action.payload.type_id);
+    // const response = 
+    yield axios.put('api/closet/afterDelete', action.payload.type_id);
     yield put({type: 'FETCH_CLOSET'});
     yield put ({type: 'FETCH_USER'});
     }

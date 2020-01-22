@@ -65,7 +65,7 @@ class Closet extends Component {
         });
     };
 
-    componentDidMount(){    
+    componentWillMount(){    
         console.log('closet component-------CLOSET PROPS ARE',this.props.closet);  
         this.props.dispatch({type: 'FETCH_CLOSET'});
     }
