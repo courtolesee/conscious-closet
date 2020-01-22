@@ -3,20 +3,27 @@ Courtney Olesee's solo project for Prime Digital Academy
 
 Duration: 2 week sprint
 
-Description/elevator pitch will go here. 
+Conscious Closet 
 
-To see fully functional site, go here: Will be deployed to Heroku. 
+Come back soon to see the fully functional site, soon to be deployed to Heroku. 
 
-## Screen Shots
-A few screen shots will go here. 
+<!-- ## Screen Shots
+A few screen shots will go here.  -->
 
 ## Installation 
-Will tell viewer how to get the app up and running.
+In your command line, run: 
+> npm install
+> npm run server
+> npm run client 
 
-## Usage
-Will tell viewer how to use. 
+Go to http://localhost:3000/#/
+
+<!-- ## Usage
+Will tell viewer how to use.  -->
 
 ## Built With
-- React
-- React-Redux
-- etc
+- React (redux, sagas)
+- Axios, PG, Node, Express
+- PostgresSQL
+- Passport
+- Material UI
