@@ -44,7 +44,7 @@ _More information on how to best use Conscious Closet coming soon_
 ## Challenges
 Here's an ongoing list of challenges I'm coming across as I build Conscious Closet: 
 - User authentication/authorization strategies were created by Prime Instructors. Instead of building my application from that starter code, I built my components and later integrated the starter code. This created more learning opportunites in using auth to conform the code I did not write to my own code, allowing me to dig deeper into unfamiliar auth technologies. 
-- Logic! This application requires server side math upon every action or change to the database. 
+- Logic! This application requires server side math upon every action or change to the database. I ensured smooth logic by testing at every computation point. 
 
 ## Stretch Goals
 - Usability priming: as all user actions in Conscious Closet have high and unchanging impact, _Try It_ page that allows users to test out the applicaiton before impacting their own closet page, or go back to the _Try It_ to see how a new item or deletion action might impact their own closet before making a decision. 

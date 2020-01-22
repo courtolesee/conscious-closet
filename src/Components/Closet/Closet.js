@@ -5,7 +5,7 @@ import WaterProgressBar from '../WaterProgressBar/WaterProgressBar';
 import WasteProgressBar from '../WasteProgressBar/WasteProgressBar';
 import LogOutButton from '../LogOutButton/LogOutButton';
 
-// material UI
+// MUI imports
 import { withStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';

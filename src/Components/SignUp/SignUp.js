@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+
+// MUI
 import WaterGoalSlider from '../WaterGoalSlider/WaterGoalSlider';
 import WasteGoalSlider from '../WasteGoalSlider/WasteGoalSlider';
 import { withStyles } from '@material-ui/core/styles';
@@ -158,9 +160,9 @@ class SignUp extends Component {
                     />
                     </label>
                 </div>
-                <div>
+                {/* <div>
                     New Items Per Year:<input type="number" value={this.state.newItems} onChange={this.handleInputChangeFor('newItems')} placeholder="example: 6, 12, 24"/><br/>
-                </div>
+                </div> */}
                 <div>
                     <ClickAwayListener onClickAway={this.handleTooltipClose}>
                     <div>

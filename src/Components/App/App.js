@@ -12,7 +12,6 @@ import Login from '../Login/Login';
 import Closet from '../Closet/Closet';
 import Graph from '../Graph/Graph';
 import AccountSettings from '../AccountSettings/AccountSettings';
-import Delete from '../Delete/Delete';
 import ItemCard from '../ItemCard/ItemCard';
 
 class App extends Component {
@@ -36,7 +35,6 @@ class App extends Component {
           <ProtectedRoute path="/item" component={ItemCard} />
           <ProtectedRoute path="/graph" component={ Graph } />
           <ProtectedRoute path="/account" component={ AccountSettings } />
-          <ProtectedRoute path="/delete" component={ Delete } />
         </Router>
     </div>
     );
