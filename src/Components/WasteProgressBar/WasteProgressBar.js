@@ -28,10 +28,10 @@ const styles = theme => ({
       right: theme.spacing(3),
     },  
     linearColorPrimary: {
-        backgroundColor: '#d9c6bf',
+        backgroundColor: '#ebd2cc',
     },
     linearBarColorPrimary: {
-        backgroundColor: '#F25D27',
+        backgroundColor: '#ab391d',
     },
   });
 

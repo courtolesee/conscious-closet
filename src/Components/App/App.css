@@ -1,11 +1,11 @@
 .App {
   text-align: center;
-  background-color: #1e2626;
+  background-color: #0a2238;
   color: white;
 }
 
 .App-header {
-  background-color: #2b3636;
+  background-color: #000013;
   min-height: 50px;
   display: flex;
   flex-direction: column;
@@ -16,11 +16,11 @@
 }
 
 body {
-  background-color: #1e2626;
+  background-color: #0a2238;
 }
 
 .App-body {
-  background-color: #1e2626;
+  background-color: #0a2238;
 }
 
 .closetSticky {

@@ -22,7 +22,7 @@ const styles = theme => ({
 
 const LogOutButton = props => (
   
-  <Button size="small" variant="contained" color="primary" 
+  <Button size="small" variant="contained" color="primary" style={{backgroundColor:"#c44d1a"}}
   // className={classNames(classes.margin, classes.cssRoot)}
   className={props.className}
   onClick={() => props.dispatch({ type: 'LOGOUT' })}

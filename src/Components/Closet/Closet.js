@@ -86,13 +86,14 @@ class Closet extends Component {
                 <section>
                 <h2>Hello, {this.props.user.username}</h2>
                 <LogOutButton className="log-in" />
-                <Button size="small" variant="contained" color="primary" className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToAccountSettings}>
+                <Button size="small" variant="contained" color="primary" style={{backgroundColor:"#74bad1"}} 
+                className={classNames(classes.margin, classes.cssRoot)} onClick={this.goToAccountSettings}>
                     Account Settings
                 </Button>
                 <WaterProgressBar />
                 <WasteProgressBar />
                 <h2>Closet
-                <Fab color="primary" aria-label="Add" onClick={this.handleDialogOpen} style={{backgroundColor:"#03A696", marginLeft:"300px"}} size="small">
+                <Fab color="primary" aria-label="Add" onClick={this.handleDialogOpen} style={{backgroundColor:"#74bad1", marginLeft:"300px"}} size="small">
                         <AddIcon />
                 </Fab></h2>
                 </section>

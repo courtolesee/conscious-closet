@@ -24,7 +24,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 const styles = theme => ({
     card: {
       minWidth: 275,
-      backgroundColor: '#2b3636',
+      backgroundColor: '#364962',
       color: 'white',
       marginBottom: '6px'
     },
@@ -168,7 +168,7 @@ class ItemCard extends Component {
 
           <Button 
           size="small" 
-          // onClick={this.deleteItem} 
+          style={{backgroundColor:"#8d1c00"}}
           onClick={this.handleDialogOpen}
           color="primary" className={classNames(classes.margin, classes.cssRoot)}
           >Delete</Button>
@@ -187,9 +187,9 @@ class ItemCard extends Component {
                                 // label="Delete Type"
                                 value={this.state.stateToSend.deleteType}
                                 onChange={(event)=>this.handleChange(event, 'deleteType')}
-                                inputProps={{
-                                    deleteType: 'deleteType',
-                                }}
+                                // inputProps={{
+                                //     deleteType: 'deleteType',
+                                // }}
                                 style={{backgroundColor: 'white'}}
                             >
                                 <MenuItem value={1}>Throw Away</MenuItem>
@@ -198,7 +198,7 @@ class ItemCard extends Component {
                             </Select>
                         </DialogContent>
                         <DialogActions>
-                            <Button onClick={this.handleClose} color="primary">
+                            <Button onClick={this.handleDialogClose} color="primary">
                             Cancel
                             </Button>
                             <Button onClick={this.deleteItem} color="primary">
