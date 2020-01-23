@@ -26,6 +26,7 @@ class App extends Component {
       <header className="App-header">
         Conscious Closet
       </header>
+      <body className="App-body">
         <Router>
           <Route path="/about" component={ About } />
           <Route path="/try" component={ TryIt } />
@@ -36,6 +37,7 @@ class App extends Component {
           <ProtectedRoute path="/graph" component={ Graph } />
           <ProtectedRoute path="/account" component={ AccountSettings } />
         </Router>
+      </body>
     </div>
     );
   }

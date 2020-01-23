@@ -15,6 +15,14 @@
   color: white;
 }
 
+body {
+  background-color: #1e2626;
+}
+
+.App-body {
+  background-color: #1e2626;
+}
+
 .closetSticky {
   position: sticky;
   top: 0px;
