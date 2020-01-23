@@ -220,6 +220,6 @@ ItemCard.propTypes = {
 
 const mapStateToProps = state => ({
     user: state.user 
-  });
+});
 
 export default withRouter(connect(mapStateToProps)(withStyles(styles)(ItemCard)));
