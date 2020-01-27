@@ -45,6 +45,7 @@ export default function WasteGoalSlider(props) {
             min={0}
             max={160}
             color="primary"
+            style={{color: "white"}}
           />
         </Grid>
         <Grid item>

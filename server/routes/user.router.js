@@ -20,13 +20,12 @@ router.post('/register', (req, res, next) => {
     
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
-  const newItems = req.body.newItems;
   const waterGoal = req.body.waterGoal;
   const wasteGoal = req.body.wasteGoal;
 
-  const queryText = `INSERT INTO "consumer" (username, password, new_yearly_cap, water_goal, waste_goal) 
-  VALUES ($1, $2, $3, $4, $5) RETURNING user_id`;
-  pool.query(queryText, [username, password, newItems, waterGoal, wasteGoal])
+  const queryText = `INSERT INTO "consumer" (username, password, water_goal, waste_goal) 
+  VALUES ($1, $2, $3, $4) RETURNING user_id`;
+  pool.query(queryText, [username, password, waterGoal, wasteGoal])
     .then( (result) => {
       res.send(result.rows[0].id);
     })

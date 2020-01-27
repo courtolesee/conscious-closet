@@ -24,7 +24,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 const styles = theme => ({
     card: {
       minWidth: 275,
-      backgroundColor: '#364962',
+      backgroundColor: '#4e688a',
       color: 'white',
       marginBottom: '6px'
     },
@@ -95,6 +95,8 @@ class ItemCard extends Component {
     }
 
     handleChange = (event, newState) => {
+        console.log('new state is:', event.target.value);
+        
         this.setState({
           stateToSend:{...this.state.stateToSend, 
             [newState]: event.target.value},
@@ -140,7 +142,7 @@ class ItemCard extends Component {
                 id="filled-name"
                 label="Name"
                 className={classes.textField}
-                value={this.props.closet.name}
+                value={this.state.stateToSend.name}
                 type="text"
                 name={this.props.closet.name}
                 onChange={(event)=>this.handleChange(event, 'name')}

@@ -45,6 +45,7 @@ import Input from '@material-ui/core/Input';
               min={0}
               max={270000}
               color="primary"
+              style={{color: "white"}}
             />
           </Grid>
           <Grid item>

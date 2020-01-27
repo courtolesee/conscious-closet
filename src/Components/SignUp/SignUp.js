@@ -88,19 +88,17 @@ class SignUp extends Component {
     // data functions
     registerUser = (event) => {
         event.preventDefault();
-        if (this.state.username && this.state.password 
-            && this.state.newItems && this.state.waterGoal && this.state.wasteGoal){
+        if (this.state.username && this.state.password && this.state.waterGoal && this.state.wasteGoal){
             this.props.dispatch({
                 type: 'REGISTER',
                 payload: {
                     username: this.state.username,
                     password: this.state.password, 
-                    newItems: Number(this.state.newItems),
                     waterGoal: Number(this.state.waterGoal),
                     wasteGoal: Number(this.state.wasteGoal),
                 },
             });
-            this.props.history.push(`/`)
+            this.props.history.push(`/`);
         } else {
             this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
         }
