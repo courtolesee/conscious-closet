@@ -15,7 +15,8 @@ Find the original scope document here: https://docs.google.com/document/d/1l75AQ
 Come back soon to see the fully functional site, soon to be deployed to Heroku. 
 
 ## Screen Shots
-_Previews coming soon_
+![Presenation Image](presentation.jpeg)
+Presentation of Conscious Closet at Prime Digital Academy Jan. 27, 2020.
 
 ## Installation 
 Create a database called **conscious_closet**, and run the create table queries in the database.sql file. 
