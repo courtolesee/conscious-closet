@@ -68,8 +68,6 @@ router.put('/afterDelete', (req, res) => {
     const typeId = doDeleteMath(req.body.data.type_id);
     const deleteType = doDeleteTypeMath(req.body.data.deleteType);    
     const result = typeId * deleteType;
-    console.log('asdjf;asjkdf;aklsjd;fkajsdf', result);
-
     const queryText = 
     `UPDATE consumer SET actual_waste = actual_waste + $2
     WHERE user_id = $1`;

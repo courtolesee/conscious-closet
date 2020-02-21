@@ -105,15 +105,13 @@ class SignUp extends Component {
     }
 
     handleInputChangeFor = propertyName => (event) => {
-        console.log('changing', event.target.value);
-        this.setState({
+\        this.setState({
             [propertyName]: event.target.value,
         });
     }
 
     handleWaterSliderChange = (event, newWaterValue) => {
         this.setState({waterGoal: newWaterValue});
-        console.log('water:', newWaterValue);
     };
 
     handleWaterInputChange = event => {
@@ -122,7 +120,6 @@ class SignUp extends Component {
 
     handleWasteSliderChange = (event, newWasteValue) => {
         this.setState({wasteGoal: newWasteValue});
-        console.log('waste:', newWasteValue);
       };
 
     handleWasteInputChange = event => {

@@ -95,7 +95,6 @@ class ItemCard extends Component {
     }
 
     handleChange = (event, newState) => {
-        console.log('new state is:', event.target.value);
         
         this.setState({
           stateToSend:{...this.state.stateToSend, 
@@ -122,9 +121,7 @@ class ItemCard extends Component {
     };
 
     deleteItem = () => {
-        console.log('in closet the payload is:', this.props.closet);
-        console.log('delete type is:', this.state.stateToSend.deleteType);
-          this.props.dispatch({ 
+\          this.props.dispatch({ 
           type: 'DELETE_ITEM', 
           payload: {closet: this.props.closet, deleteType: this.state.stateToSend.deleteType}})
         this.setState({ dialogOpen: false });
